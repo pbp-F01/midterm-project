@@ -1,62 +1,36 @@
-# Template Proyek Django PBP
+# README PROYEK TENGAH SEMESTER KELOMPOK F01
 
-Pemrograman Berbasis Platform (CSGE602022) - diselenggarakan oleh Fakultas Ilmu Komputer Universitas Indonesia, Semester Ganjil 2022/2023
+## Anggota Kelompok
+	1. Ihza Dafa Maulidan - 2106652726
+	2. Ahmadhi Prananta Hastiputra - 2106702895
+	3. Shafa Aleyda Tsabitah - 2106634534 	
+	4. Rafinal Haryokusumo Taloputra - 2106634540
+	5. Sania Rizqi Maharani - 2006597001
+   
+## Tautan aplikasi Heroku
+https://pbp-f01.herokuapp.com/
+link github kelompok: https://github.com/pbp-F01
 
-*Read this in other languages: [Indonesian](README.md), [English](README.en.md)*
+## Cerita aplikasi yang diajukan serta manfaatnya
+Kelompok kami akan membuat aplikasi yang berkaitan dengan salah satu topik G20 Presidensi Indonesia yakni Digital Transformation dan Trade & Investment. Deskripsi topik tersebut yakni untuk pencapaian potensi sebenarnya dari digitalisasi ekonomi global yang cepat membutuhkan lanskap baru kerjasama antar negara dan semua pemangku kepentingan untuk mengamankan kesejahteraan bersama di era digital. Memulihkan tatanan ekonomi global pasca pandemi menjadi lebih kuat, inklusif dan kolaboratif dengan memanfaatkan digitalisasi sangat penting dalam mengatasi berbagai permasalahan umat manusia, digitalisasi adalah kuncinya. Pembahasan agenda untuk menciptakan transformasi digital yang lebih inklusif kepada dunia menunjukkan betapa pentingnya peran forum G20 bagi dunia. Lintas isu digital dan ekonomi termasuk akselerasi UMKM ke dalam ekosistem digital, digital entrepreneurship, dan revitalisasi peran perempuan di tempat kerja dengan meningkatkan kapabilitas digital menjadi beberapa agenda prioritas yang akan dibahas. Isu-isu tersebut akan dibahas melalui beberapa forum, yaitu, Kelompok Kerja Ekonomi, Pemberdayaan G20, Bisnis 20, dan banyak lagi.
 
-## Pendahuluan
 
-Repositori ini merupakan sebuah template yang dirancang untuk membantu mahasiswa yang sedang mengambil mata kuliah Pemrograman Berbasis Platform (CSGE602022) mengetahui struktur sebuah proyek aplikasi Django serta file dan konfigurasi yang penting dalam berjalannya aplikasi. Kamu dapat dengan bebas menyalin isi dari repositori ini atau memanfaatkan repositori ini sebagai pembelajaran sekaligus awalan dalam membuat sebuah proyek Django.
+Pada aplikasi yang akan kami buat berisi segala hal terkait dengan UMKM di Indonesia seperti cara pendaftaran UMKM, fitur usaha untuk para pelaku UMKM, cara pendaftaran investasi pada UMKM, daftar lokasi UMKM, cara pendaftaran akun konsumen yang ingin bertransaksi dengan pelaku UMKM. Tentunya aplikasi ini mempunyai banyak manfaat tidak hanya untuk pelaku dan konsumen UMKM, tapi untuk perekonomian rakyat Indonesia.
 
-## Cara Menggunakan
+Berdasarkan permasalahan di atas, kami hendak membuat sebuah aplikasi perangkat lunak berbasis Web sebagai media yang terkait dengan UMKM di Indonesia. Pengembangan aplikasi ini bertujuan agar pemanfaatan digitalisasi untuk beberapa sektor UMKM yang belum beradaptasi secara digital dapat dioptimalkan serta membantu para pelaku UMKM dalam mempromosikan usaha UMKM di masa pasca pandemi. Dengan adanya aplikasi ini, harapannya dapat bermanfaat untuk pelaku dan konsumen UMKM, bahkan untuk perekonomian rakyat Indonesia.
 
-Apabila kamu ingin menggunakan repositori ini sebagai repositori awalan yang nantinya akan kamu modifikasi:
 
-1. Buka laman GitHub repositori templat kode, lalu klik tombol "**Use this template**"
-   untuk membuat salinan repositori ke dalam akun GitHub milikmu.
-2. Buka laman GitHub repositori yang dibuat dari templat, lalu gunakan perintah
-   `git clone` untuk menyalin repositorinya ke suatu lokasi di dalam sistem
-   berkas (_filesystem_) komputermu:
+https://smesta.kemenkopukm.go.id/
 
-   ```shell
-   git clone <URL ke repositori di GitHub> <path ke suatu lokasi di filesystem>
-   ```
-3. Masuk ke dalam repositori yang sudah di-_clone_ dan jalankan perintah berikut
-   untuk menyalakan _virtual environment_:
+## Daftar modul yang akan diimplementasikan
+1. Landing Page (Login, Logout, register account(Pelaku, Konsumen, Investor UMKM))
+2. Daftar lokasi dan detail deskripsi/profil UMKM
+3. Dashboard laporan penjualan UMKM (buat ke investor nya) 
+4. Berita UMKM
+5. Review/rating UMKM
 
-   ```shell
-   python -m venv env
-   ```
-4. Nyalakan environment dengan perintah berikut:
+## Role atau peran pengguna beserta deskripsinya
+- Pemilik UMKM: Pemilik UMKM dapat meng-update laporan penjualan
+- Investor Dana UMKM: Investor dapat melakukan donasi untuk membantu para UMKM, melakukan pemantauan terhadap laporan penjualan UMKM dan melihat review dari UMKM. 
+- Konsumen UMKM: Konsumen dapat melihat halaman mengenai letak dari lokasi UMKM, Deskripsi detail mengenai produk yang dihasilkan oleh UMKM, dan menulis review dari UMKM.
 
-   ```shell
-   # Windows
-   .\env\Scripts\activate
-   # Linux/Unix, e.g. Ubuntu, MacOS
-   source env/bin/activate
-   ```
-5. Install dependencies yang dibutuhkan untuk menjalankan aplikasi dengan perintah berikut:
-
-   ```shell
-   pip install -r requirements.txt
-   ```
-
-6. Jalankan aplikasi Django menggunakan server pengembangan yang berjalan secara
-   lokal:
-
-   ```shell
-   python manage.py runserver
-   ```
-7. Bukalah `http://localhost:8000` pada browser favoritmu untuk melihat apakah aplikasi sudah berjalan dengan benar.
-
-## Contoh Deployment 
-
-Pada template ini, deployment dilakukan dengan memanfaatkan GitHub Actions sebagai _runner_ dan Heroku sebagai platform Hosting aplikasi. 
-
-Untuk melakukan deployment, kamu dapat melihat instruksi yang ada pada [Tutorial 0](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tutorial/tutorial-0).
-
-Untuk contoh aplikasi Django yang sudah di deploy, dapat kamu akses di [https://django-pbp-template.herokuapp.com/](https://django-pbp-template.herokuapp.com/)
-
-## Credits
-
-Template ini dibuat berdasarkan [PBP Ganjil 2021](https://gitlab.com/PBP-2021/pbp-lab) yang ditulis oleh Tim Pengajar Pemrograman Berbasis Platform 2021 ([@prakashdivyy](https://gitlab.com/prakashdivyy)) dan [django-template-heroku](https://github.com/laymonage/django-template-heroku) yang ditulis oleh [@laymonage, et al.](https://github.com/laymonage). Template ini dirancang sedemikian rupa sehingga mahasiswa dapat menjadikan template ini sebagai awalan serta acuan dalam mengerjakan tugas maupun dalam berkarya.
