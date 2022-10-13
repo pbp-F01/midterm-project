@@ -1,4 +1,4 @@
-# README PROYEK TENGAH SEMESTER KELOMPOK F01
+# GoUMKM KELOMPOK F01
 
 ## Anggota Kelompok
 	1. Ihza Dafa Maulidan - 2106652726
@@ -9,13 +9,11 @@
    
 ## Tautan aplikasi Heroku
 https://pbp-f01.herokuapp.com/
-link github kelompok: https://github.com/pbp-F01
 
 ## Cerita aplikasi yang diajukan serta manfaatnya
-Kelompok kami akan membuat aplikasi yang berkaitan dengan salah satu topik G20 Presidensi Indonesia yakni Digital Transformation dan Trade & Investment. Deskripsi topik tersebut yakni untuk pencapaian potensi sebenarnya dari digitalisasi ekonomi global yang cepat membutuhkan lanskap baru kerjasama antar negara dan semua pemangku kepentingan untuk mengamankan kesejahteraan bersama di era digital. Memulihkan tatanan ekonomi global pasca pandemi menjadi lebih kuat, inklusif dan kolaboratif dengan memanfaatkan digitalisasi sangat penting dalam mengatasi berbagai permasalahan umat manusia, digitalisasi adalah kuncinya. Pembahasan agenda untuk menciptakan transformasi digital yang lebih inklusif kepada dunia menunjukkan betapa pentingnya peran forum G20 bagi dunia. Lintas isu digital dan ekonomi termasuk akselerasi UMKM ke dalam ekosistem digital, digital entrepreneurship, dan revitalisasi peran perempuan di tempat kerja dengan meningkatkan kapabilitas digital menjadi beberapa agenda prioritas yang akan dibahas. Isu-isu tersebut akan dibahas melalui beberapa forum, yaitu, Kelompok Kerja Ekonomi, Pemberdayaan G20, Bisnis 20, dan banyak lagi.
+Kelompok kami akan membuat aplikasi yang berkaitan dengan salah satu topik G20 Presidensi Indonesia yakni _Digital Transformation_ dan _Trade & Investment_. Deskripsi topik tersebut yakni untuk pencapaian potensi sebenarnya dari digitalisasi ekonomi global yang cepat dan membutuhkan lanskap baru kerjasama antar negara serta semua pemangku kepentingan untuk mengamankan kesejahteraan bersama di era digital. Memulihkan tatanan ekonomi global pasca pandemi menjadi lebih kuat, inklusif dan kolaboratif dengan memanfaatkan digitalisasi sangat penting dalam mengatasi berbagai permasalahan umat manusia, digitalisasi adalah kuncinya. Pembahasan agenda untuk menciptakan transformasi digital yang lebih inklusif kepada dunia menunjukkan betapa pentingnya peran forum G20 bagi dunia. Lintas isu digital dan ekonomi termasuk akselerasi UMKM ke dalam ekosistem digital, digital entrepreneurship, dan revitalisasi peran perempuan di tempat kerja dengan meningkatkan kapabilitas digital menjadi beberapa agenda prioritas yang akan dibahas. Isu-isu tersebut akan dibahas melalui beberapa forum, yaitu, Kelompok Kerja Ekonomi, Pemberdayaan G20, Bisnis 20, dan banyak lagi.
 
-
-Pada aplikasi yang akan kami buat berisi segala hal terkait dengan UMKM di Indonesia seperti cara pendaftaran UMKM, fitur usaha untuk para pelaku UMKM, cara pendaftaran investasi pada UMKM, daftar lokasi UMKM, cara pendaftaran akun konsumen yang ingin bertransaksi dengan pelaku UMKM. Tentunya aplikasi ini mempunyai banyak manfaat tidak hanya untuk pelaku dan konsumen UMKM, tapi untuk perekonomian rakyat Indonesia.
+Aplikasi yang akan kami buat berisi segala hal terkait dengan UMKM di Indonesia seperti cara pendaftaran UMKM, fitur usaha untuk para pelaku UMKM, cara pendaftaran investasi pada UMKM, daftar lokasi UMKM, cara pendaftaran akun konsumen yang ingin bertransaksi dengan pelaku UMKM. Tentunya aplikasi ini mempunyai banyak manfaat tidak hanya untuk pelaku dan konsumen UMKM, tapi untuk perekonomian rakyat Indonesia.
 
 Berdasarkan permasalahan di atas, kami hendak membuat sebuah aplikasi perangkat lunak berbasis Web sebagai media yang terkait dengan UMKM di Indonesia. Pengembangan aplikasi ini bertujuan agar pemanfaatan digitalisasi untuk beberapa sektor UMKM yang belum beradaptasi secara digital dapat dioptimalkan serta membantu para pelaku UMKM dalam mempromosikan usaha UMKM di masa pasca pandemi. Dengan adanya aplikasi ini, harapannya dapat bermanfaat untuk pelaku dan konsumen UMKM, bahkan untuk perekonomian rakyat Indonesia.
 
