@@ -18,8 +18,6 @@ Aplikasi yang akan kami buat berisi segala hal terkait dengan UMKM di Indonesia 
 Berdasarkan permasalahan di atas, kami hendak membuat sebuah aplikasi perangkat lunak berbasis Web sebagai media yang terkait dengan UMKM di Indonesia. Pengembangan aplikasi ini bertujuan agar pemanfaatan digitalisasi untuk beberapa sektor UMKM yang belum beradaptasi secara digital dapat dioptimalkan serta membantu para pelaku UMKM dalam mempromosikan usaha UMKM di masa pasca pandemi. Dengan adanya aplikasi ini, harapannya dapat bermanfaat untuk pelaku dan konsumen UMKM, bahkan untuk perekonomian rakyat Indonesia.
 
 
-https://smesta.kemenkopukm.go.id/
-
 ## Daftar modul yang akan diimplementasikan
 1. Landing Page (Login, Logout, register account(Pelaku, Konsumen, Investor UMKM))
 2. Daftar lokasi dan detail deskripsi/profil UMKM
