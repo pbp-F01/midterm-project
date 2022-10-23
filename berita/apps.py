@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class GoumkmConfig(AppConfig):
+class BeritaConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'GoUMKM'
+    name = 'berita'
