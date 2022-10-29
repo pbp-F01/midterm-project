@@ -33,7 +33,8 @@
           <div
             class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5"
           >
-            <form style="width: 23rem">
+            <form method="post" style="width: 23rem">
+              {% csrf_token %}
               <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px">
                 Log in
               </h3>
@@ -66,9 +67,7 @@
 
               <p>
                 Don't have an account?
-                <a href="{% url 'landing:register' %}" class="link-info"
-                  >Register here</a
-                >
+                <a href="{% url 'landing:register' %}">Register here</a>
               </p>
             </form>
           </div>
