@@ -1,6 +1,7 @@
 from pyexpat import model
 from django.db import models
 from django.contrib.auth.models import User 
+from landing.models import Profile
 
 # Create your models here.
 
@@ -13,6 +14,6 @@ class NewsModel(models.Model):
     
 class CommentModel(models.Model):
     comments_substance = models.TextField(blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(Profile, related_name="profile", on_delete=models.CASCADE)
     news = models.ForeignKey(NewsModel, related_name="comments", on_delete=models.CASCADE)
-    date_added = models.DateTimeField(auto_now_add=True)
+    date_added = models.DateField(auto_now_add=True)
