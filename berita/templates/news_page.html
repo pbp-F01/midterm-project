@@ -20,7 +20,7 @@
 
         var currentURL = window.location.pathname 
         let news_id = currentURL.match(/(?<=news_page\/)\d+/); 
-        // console.log(news_id);
+        console.log(news_id);
         
         function addComment(){
             $.get("json_comment/"+news_id, function(data){
@@ -30,7 +30,7 @@
                 for (var i = 0; i < data.length; i++) {
                     htmlstring += 
                     `
-                    <p style="margin-left: 50px; line-height: 0em;"> <b>${data[i].fields.user}</b> | <small>${data[i].fields.date_added}</small></p>
+                    <p style="margin-left: 50px; line-height: 0em;"> <b>{{user}}</b> | <small>${data[i].fields.date_added}</small></p>
                     <p style="margin-left: 50px; margin-bottom: 30px;">${data[i].fields.comments_substance}</p>
                     `
                     
@@ -121,7 +121,7 @@
     <div>
         <h2 style="margin-left: 50px;">Comments</h2>
             
-            <div style="background: linear-gradient(0deg,  rgba(217, 217, 217, 0)0%, rgba(170, 139, 86, 0.61) 61%);" class="position-relative">
+            <div style="background: linear-gradient(0deg,  rgba(217, 217, 217, 0)5%, rgba(170, 139, 86, 0.61) 61%);" class="position-relative">
                 <hr style="background-color: black; height: 1px;">
                 {% if not comments.all %} 
                     No Comments Yet

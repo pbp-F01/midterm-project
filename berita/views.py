@@ -1,11 +1,15 @@
 from datetime import datetime
+from time import timezone
 from django.shortcuts import render
 from berita.models import NewsModel
 from berita.models import CommentModel
+from landing.models import Profile
 from django.http import HttpResponse
 import datetime
 from django.core import serializers
 from django.http import Http404
+from django.contrib.auth.decorators import login_required
+from landing.models import Profile
 
 
 # Create your views here.
@@ -31,6 +35,12 @@ def show_json_comment(request, id):
     data = CommentModel.objects.filter(news__pk=id)
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
+def show_profile(request):
+    data = Profile.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+
+@login_required(login_url='/landing/login/')
 def add_comment(request, id):
     print(id)
     if (request.method == 'POST'):
@@ -42,7 +52,7 @@ def add_comment(request, id):
 
         new_comment = CommentModel.objects.create(
             comments_substance=comments_substance, 
-            user = request.user, 
+            user = Profile.objects.get(), 
             news = news, 
             date_added = datetime.datetime.now(), 
         )
