@@ -23,10 +23,10 @@ def register(request):
         form = SignUp(request.POST)
         if form.is_valid():
             pengguna = form.save()
-            profile.objects.create(user=pengguna, name=form.get(
-                'name'), email=form.get('email'), roles=form.get('roles'))
+            Profile.objects.create(
+                user=pengguna, name=pengguna.name, email=pengguna.email, roles=pengguna.roles)
             messages.success(request, 'Akun berhasil dibuat!')
-            return redirect('landing:login')
+            return redirect("landing:login")
 
     context = {'form': form}
     return render(request, 'register.html', context)
