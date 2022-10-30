@@ -7,8 +7,9 @@ from django.contrib.auth.models import User
 class NewsModel(models.Model):
     news_title = models.CharField(max_length=255)
     news_body = models.TextField(blank=True)
-    news_source = models.CharField(max_length=255)
+    news_source = models.URLField(max_length=500)
     news_image = models.URLField(max_length=500)
+    news_published = models.CharField(max_length=255)
     
 class CommentModel(models.Model):
     comments_substance = models.TextField(blank=True)

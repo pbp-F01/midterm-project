@@ -5,6 +5,7 @@ from berita.models import CommentModel
 from django.http import HttpResponse
 import datetime
 from django.core import serializers
+from django.http import Http404
 
 
 # Create your views here.
@@ -13,14 +14,14 @@ def show_landing_news(request):
     berita = NewsModel.objects.all()
     return render(request, "news_landing_page.html")
 
-def show_headline_news(request, id):
+def show_news(request, id):
     berita = NewsModel.objects.filter(pk=id)
     comments = CommentModel.objects.filter(news__pk=id)
     context = {
         'news': berita, 
         'comments': comments, 
     }
-    return render(request, "headline_news.html", context)
+    return render(request, "news_page.html", context)
 
 def show_json(request):
     data = NewsModel.objects.all()
@@ -31,17 +32,24 @@ def show_json_comment(request, id):
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def add_comment(request, id):
+    print(id)
     if (request.method == 'POST'):
-        comment_substance = request.POST.get('comments_substance')
-        berita = NewsModel.objects.get(id=id)
+        comments_substance = request.POST.get('comments_substance')
+        try:
+            news = NewsModel.objects.get(pk=id)
+        except NewsModel.DoesNotExist:
+            raise Http404("No Model matches")
 
         new_comment = CommentModel.objects.create(
-            comment_substance=comment_substance, 
+            comments_substance=comments_substance, 
             user = request.user, 
-            news = berita, 
+            news = news, 
             date_added = datetime.datetime.now(), 
         )
 
         new_comment.save()
         return HttpResponse("")
-    return render (request, "headline_news.html")
+    return render (request, "news_page.html")
+
+def show_url(request):
+    return request.path_info
