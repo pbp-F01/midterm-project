@@ -16,6 +16,11 @@ def index(request):
     return render(request, 'index.html')
 
 
+def logout_user(request):
+    logout(request)
+    return redirect('landing:login')
+
+
 def register(request):
     form = SignUp()
 
