@@ -36,8 +36,8 @@ def show_json_comment(request, id):
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 def show_profile(request):
-    data = Profile.objects.all()
-    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+    data_profile = Profile.objects.all()
+    return HttpResponse(serializers.serialize("json", data_profile), content_type="application/json")
 
 
 @login_required(login_url='/landing/login/')
