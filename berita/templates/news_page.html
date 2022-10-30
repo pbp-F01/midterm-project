@@ -20,28 +20,39 @@
 
         var currentURL = window.location.pathname 
         let news_id = currentURL.match(/(?<=news_page\/)\d+/); 
-        console.log(news_id);
+        // console.log(news_id);
+
+        let profile_id = ``
+        var user_comment = ``
+        let htmlstring = ``
         
+
         function addComment(){
             $.get("json_comment/"+news_id, function(data){
-                document.getElementById("comments").innerHTML = ""
-                let htmlstring = ``
-
-                for (var i = 0; i < data.length; i++) {
-                    htmlstring += 
-                    `
-                    <p style="margin-left: 50px; line-height: 0em;"> <b>{{user}}</b> | <small>${data[i].fields.date_added}</small></p>
-                    <p style="margin-left: 50px; margin-bottom: 30px;">${data[i].fields.comments_substance}</p>
-                    `
+                $.get("{% url 'berita:show_profile' %}", function(data_profile){
+                    document.getElementById("comments").innerHTML = ""
                     
-                }
+                    for (var i = 0; i < data.length; i++) {
+
+                        profile_id = data[i].fields.user; 
+                        
+                        htmlstring += 
+                        `
+                        <p style="margin-left: 50px; line-height: 0em;"> <b>${data_profile[profile_id-1].fields.name}</b> | <small>${data[i].fields.date_added}</small></p>
+                        <p style="margin-left: 50px; margin-bottom: 30px;">${data[i].fields.comments_substance}</p>
+                        `
+                    }   document.getElementById("comments").innerHTML += htmlstring;
+                })
                 
-                document.getElementById("comments").innerHTML = htmlstring
+               
             })
         }
         $(document).ready(function(){
             addComment(); 
+        })
+        
 
+        
         $(document).on('submit', '#addComment', function(e){
             addComment(); 
             addComment(); 
@@ -61,7 +72,7 @@
             addComment(); 
         })
 
-    })
+   
 
 
 
@@ -128,7 +139,9 @@
                 {% else %}
                 <!-- {% for comment in comments %}  -->
 
-                <div id="comments"></div>
+                <div id="comments">
+                   
+                </div>
                 
 
                 <!-- {% endfor %} -->
