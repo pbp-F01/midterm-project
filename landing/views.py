@@ -26,7 +26,7 @@ def register(request):
             Profile.objects.create(
                 user=pengguna, name=pengguna.name, email=pengguna.email, roles=pengguna.roles)
             messages.success(request, 'Akun berhasil dibuat!')
-            return redirect("landing:login")
+            return redirect("berita:show_landing_news")
 
     context = {'form': form}
     return render(request, 'register.html', context)
@@ -39,7 +39,8 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            response = HttpResponseRedirect(reverse("todolist:show_todolist"))
+            response = HttpResponseRedirect(
+                reverse("berita:show_landing_news"))
             return response
         else:
             messages.info(request, 'Username atau Password salah!')
