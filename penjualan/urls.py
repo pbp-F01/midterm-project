@@ -5,4 +5,5 @@ app_name = 'penjualan'
 urlpatterns = [
     path('', views.show_dashboard, name='show_dashboard'),
     path('addlaporan/', views.add_laporan, name='addlaporan'),
+    
 ]

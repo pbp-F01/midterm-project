@@ -1,6 +1,5 @@
 import re
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from penjualan.models import Laporan
 
