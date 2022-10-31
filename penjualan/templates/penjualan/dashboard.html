@@ -1,0 +1,69 @@
+{% extends 'penjualan/index.html' %}
+
+    {% block body %}
+    <p>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addnewmember" style="background-color:#395144; border-radius: 12px; text-align: center; float: right;">
+          +
+        </button>
+    </p>
+        <!-- Modal -->
+        <div class="modal fade" id="addnewmember" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label>Nama UMKM</label>
+                           <input type="text" id="nama_umkm" class="form-control"/>
+                    </div>        
+                    <div class="mb-3">
+                        <label>Date</label>
+                        <input type="text" id="date" class="form-control"/>
+                    </div>
+                    <div class="mb-3">
+                        <label>Jumlah Terjual</label>
+                        <input type="text" id="jumlah_terjual" class="form-control"/>
+                    </div>
+                    <div class="mb-3">
+                        <label>Revenue</label>
+                        <input type="text" id="revenue" class="form-control"/>
+                    </div>
+                 
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="submit">Submit</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+    <hr style="border-top:1px solid #000; clear:both;"/>
+    <table id = "table" class = "table table-bordered">
+        <thead style= "background-color: rgb(113, 145, 115);"class="alert-warning">
+            <tr>
+                <th>Date</th>
+                <th>Nama UMKM</th>
+                <th>Jumlah Terjual</th>
+                <th>Revenue</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in laporan %}
+            <tr>
+                <td>{{ i.date }}</td>
+                <td>{{ i.nama_umkm }}</td>
+                <td>{{ i.jumlah_terjual }}</td>
+                <td>{{ i.revenue }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+        
+    {% endblock %}
