@@ -18,7 +18,10 @@ def index(request):
 
 def logout_user(request):
     logout(request)
-    return redirect('landing:login')
+    response = HttpResponseRedirect(
+        reverse("landing:login"))
+    response.delete_cookie('last_login')
+    return response
 
 
 def register(request):
