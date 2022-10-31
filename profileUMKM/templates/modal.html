@@ -1,0 +1,50 @@
+<!-- create_profile Modal -->
+<div
+  class="modal fade"
+  id="create_profile"
+  tabindex="-1"
+  aria-labelledby="create_profileLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header header-modal">
+        <h1 class="modal-title fs-5" id="create_profileLabel">
+          Tambah Lokasi UMKM
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <form id="form-create-profile-UMKM">
+        <div class="modal-body">
+          {% csrf_token %}
+          <table>
+            {{ form.as_table }}
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn"
+            style="background-color: rgba(170, 139, 86, 0.15)"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            id="submit_create_profile"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+            style="background-color: #395144"
+          >
+            Add
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
