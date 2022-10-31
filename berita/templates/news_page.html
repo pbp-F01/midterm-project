@@ -24,38 +24,37 @@
 
         let profile_id = ``
         var user_comment = ``
-        let htmlstring = ``
         
-
         function addComment(){
+            
             $.get("json_comment/"+news_id, function(data){
                 $.get("{% url 'berita:show_profile' %}", function(data_profile){
                     document.getElementById("comments").innerHTML = ""
-                    
+                    let htmlstring = ``
                     for (var i = 0; i < data.length; i++) {
 
-                        profile_id = data[i].fields.user; 
+                        
+                        // console.log(data);
+                        // console.log(data_profile);
                         
                         htmlstring += 
                         `
-                        <p style="margin-left: 50px; line-height: 0em;"> <b>${data_profile[profile_id-1].fields.name}</b> | <small>${data[i].fields.date_added}</small></p>
-                        <p style="margin-left: 50px; margin-bottom: 30px;">${data[i].fields.comments_substance}</p>
+                        <p style="margin-left: 50px; line-height: 0em;"> <b>${data[i].fields.user}</b> | <small>${data[i].fields.date_added}</small></p>
+                        <p style="margin-left: 50px; ">${data[i].fields.comments_substance}</p>
+                        <hr style="margin-bottom: 20px;">
                         `
                     }   document.getElementById("comments").innerHTML += htmlstring;
                 })
-                
-               
             })
         }
         $(document).ready(function(){
             addComment(); 
         })
-        
 
-        
+    
         $(document).on('submit', '#addComment', function(e){
-            addComment(); 
-            addComment(); 
+            addComment();
+            addComment();
             e.preventDefault(); 
             $.ajax({
                 type:"POST",
@@ -68,8 +67,9 @@
                 success: addComment(), 
                 
             })
-            addComment(); 
-            addComment(); 
+            addComment();
+            addComment();
+            
         })
 
    
@@ -132,7 +132,7 @@
     <div>
         <h2 style="margin-left: 50px;">Comments</h2>
             
-            <div style="background: linear-gradient(0deg,  rgba(217, 217, 217, 0)5%, rgba(170, 139, 86, 0.61) 61%);" class="position-relative">
+            <div class="position-relative">
                 <hr style="background-color: black; height: 1px;">
                 {% if not comments.all %} 
                     No Comments Yet

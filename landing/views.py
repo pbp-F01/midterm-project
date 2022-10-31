@@ -1,3 +1,4 @@
+from cgitb import reset
 import datetime
 import profile
 from .models import Profile
@@ -18,6 +19,8 @@ def index(request):
 
 def logout_user(request):
     logout(request)
+    response = HttpResponseRedirect(reverse('landing:login'))
+    response.delete_cookie('la')
     return redirect('landing:login')
 
 
