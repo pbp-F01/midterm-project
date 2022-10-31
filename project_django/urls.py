@@ -20,4 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('example_app.urls')),
     path('penjualan/', include('penjualan.urls')),
+    path('landing/', include('landing.urls')),
+    path('berita/', include('berita.urls')),
+    path('profile-umkm/', include('profileUMKM.urls')),
 ]

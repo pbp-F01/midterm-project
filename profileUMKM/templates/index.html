@@ -1,0 +1,285 @@
+{% extends 'base.html' %} 
+
+{% load static %} 
+
+{% block meta %}
+<title>Profile UMKM</title>
+<link rel="stylesheet" type="text/css" href=" {% static 'css/style.css' %} " />
+{% endblock meta %} 
+
+{% block content %}
+
+<div class="header-profile d-flex justify-content-between">
+  <h1>Profil<br />UMKM</h1>
+
+  {% if is_authenticated and user.roles == "P" %}
+  <div class="align-self-center">
+    <button
+      type="button"
+      class="btn btn-secondary"
+      style="background-color: #395144"
+      data-bs-toggle="modal"
+      data-bs-target="#create_profile"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="25"
+        height="25"
+        fill="currentColor"
+        class="bi bi-plus"
+        viewBox="0 0 16 16"
+      >
+        <path
+          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"
+        />
+      </svg>
+    </button>
+  </div>
+  {% endif %} 
+  {% include 'modal.html' %}
+</div>
+
+<main id="profil-umkm" class="row m-6"></main>
+<section id="profil-umkm-modal"></section>
+
+<script>
+  const idForm = [
+    "id_name",
+    "id_no_telepon",
+    "id_email",
+    "id_kontak",
+    "id_kota",
+    "id_provinsi",
+    "id_kodepos",
+    "id_foto",
+  ];
+
+  const getCookie = (cname) => {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(";");
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == " ") {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  };
+
+  const getProfileUMKM = async () => {
+    const response = await fetch(
+      "{% url 'profile-UMKM:list_profile_UMKM_json' %}"
+    );
+    return await response.json();
+  };
+
+  const refreshProfileUMKM = async () => {
+    const profilesUMKM = await getProfileUMKM();
+    profilesUMKM.forEach((profileUMKM) => {
+      addCardProfileUMKM(profileUMKM);
+    });
+    deleteProfileUMKMHandler();
+  };
+
+  const convertToLocaleDateString = (unixDate) => {
+    return new Date(Date.parse(unixDate)).toLocaleDateString("en-US");
+  };
+
+  const addCardProfileUMKM = ({
+    pk,
+    fields: {
+      nama,
+      pemilik,
+      no_telepon,
+      email,
+      kontak,
+      kota,
+      provinsi,
+      kodepos,
+      foto,
+      tanggal_pembuatan,
+    },
+  }) => {
+    tanggal_pembuatan = convertToLocaleDateString(tanggal_pembuatan);
+    const id = pk;
+
+    let photoTag = "";
+
+    if (foto) {
+      photoTag = `
+        <div class="position-relative custom-profile-detail-image">
+          <img src="${foto}" alt="Avatar" class="w-100 h-100">
+        </div>
+      `;
+    }
+    const detailProfileUMKM =
+      `
+        <div
+          class="modal fade bd-example-modal-lg"
+          id="detail-profile-umkm-${id}"
+          tabindex="-1"
+          aria-labelledby="detail_profileLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header header-modal d-flex justify-content-around border-left-0">
+                ` +
+      photoTag +
+      `
+                <div class="card-subtitle text-center my-3">
+                  <h1 class="modal-title" id="detail_profileLabel">${nama}</h1>
+                  <p>${pemilik}</p>
+                </div>
+              </div>
+              <table class="modal-body text-center">
+                <tr>
+                  <td style="width: 1rem;">No. Telepon</td>
+                  <td style="width: 1px;">|</td>
+                  <td style="width: 1px">Email</td>
+                  <td style="width: 1px;">|</td>
+                  <td style="width: 1px;">${no_telepon}</td>
+                  <td style="width: 1px;">|</td>
+                  <td style="width: 1px;">${email}</td>
+                </tr>
+                <tr>
+                  <td></td>
+                    <td></td>
+                  <td>Kontak</td>
+                  <td>|</td>
+                  <td>${kontak}</td>
+                </tr>
+                <tr>
+                  <td></td>
+                    <td></td>
+                  <td>Kota</td>
+                  <td>|</td>
+                  <td>${kota}</td>
+                </tr>
+                <tr>
+                  <td></td>
+                    <td></td>
+                  <td>Provinsi</td>
+                  <td>|</td>
+                  <td>${provinsi}</td>
+                </tr>
+                <tr>
+                  <td></td>
+                    <td></td>
+                  <td>Kodepos</td>
+                  <td>|</td>
+                  <td>${kodepos}</td>
+                </tr>
+              </table>
+              <div class="modal-footer">
+                <button type="button" class="btn" style="background-color: rgba(170, 139, 86, 0.15)" data-bs-dismiss="modal">Close</button>
+                {% if is_authenticated and user.roles == "P" %}
+                <button id="${id}-delete" type="button" class="btn btn-danger delete-profile" data-bs-dismiss="modal">Delete</button>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        `;
+
+    if (foto) {
+      photoTag = `
+        <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image">
+          <img src="${foto}" alt="Avatar" class="w-100 h-100">
+        </div>
+        `;
+    }
+    const profileUMKM =
+      `
+          <div data-bs-toggle="modal" data-bs-target="#detail-profile-umkm-${id}" id="${id}-card" class="card" style="width: 15rem; height: 17rem;">
+            <div class="card-body mt-3">
+              <div class="border-0">` +
+      photoTag +
+      `
+                <div class="card-subtitle text-center my-3">
+                  <h3 class="text-uppercase card-title">${nama}</h3>
+                  <p class="card-text">${pemilik}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+         `;
+
+    document.getElementById("profil-umkm").innerHTML += profileUMKM;
+    document.getElementById("profil-umkm-modal").innerHTML += detailProfileUMKM;
+  };
+
+  const deleteProfileUMKMHandler = () => {
+    document.querySelectorAll(".delete-profile").forEach((tagProfileUMKM) => {
+      tagProfileUMKM.addEventListener("click", async () => {
+        const id = tagProfileUMKM.id.split("-")[0];
+        try {
+          const response = await fetch(`delete/${id}/`, {
+            method: "DELETE",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              "X-CSRFToken": getCookie("csrftoken"),
+            },
+          });
+          
+          if (response.statusText === "No Content") {
+            document.getElementById(`${id}-card`).remove();
+            document.getElementById(`detail-profile-umkm-${id}`).remove();
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      });
+    });
+  };
+
+  const addProfileUMKM = async (event) => {
+    event.preventDefault();
+
+    const formData = {
+      nama: document.getElementById("id_nama").value,
+      no_telepon: document.getElementById("id_no_telepon").value,
+      email: document.getElementById("id_email").value,
+      kontak: document.getElementById("id_kontak").value,
+      kota: document.getElementById("id_kota").value,
+      provinsi: document.getElementById("id_provinsi").value,
+      kodepos: document.getElementById("id_kodepos").value,
+      foto: document.getElementById("id_foto").value,
+    };
+
+    try {
+      const response = await fetch(
+        "{% url 'profile-UMKM:create_profile_UMKM' %}",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCookie("csrftoken"),
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      const profileUMKM = await response.json();
+      addCardProfileUMKM(profileUMKM);
+      deleteProfileUMKMHandler();
+    } catch (err) {
+      console.error(err);
+    }
+
+    //idForm.forEach((id) => {
+    //  document.getElementById(id).value = "";
+    //});
+  };
+  document.getElementById("form-create-profile-UMKM").onsubmit = addProfileUMKM;
+
+  refreshProfileUMKM();
+</script>
+
+{% endblock content %}

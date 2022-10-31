@@ -25,3 +25,6 @@ class Profile(models.Model):
         
     def __str__(self):
         return self.user.username
+
+    def natural_key(self):
+        return self.name 
