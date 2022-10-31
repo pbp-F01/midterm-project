@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'berita',
     'landing',
     'profileUMKM',
+    'project_django',
 ]
 
 MIDDLEWARE = [
