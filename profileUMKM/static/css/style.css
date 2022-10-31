@@ -1,0 +1,78 @@
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
+
+#form {
+  left: 50%;
+  top: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+/* Add some padding inside the card container */
+.container {
+  padding: 2px 16px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+  transition: 0.5s;
+  border-radius: 20px;
+  margin: 20px;
+  border: 2px solid #ccc;
+  background-color: rgba(78, 108, 80, 0.59);
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.header-profile {
+  background-color: rgba(170, 139, 86, 0.15);
+  padding: 20px;
+}
+
+.header-modal {
+  background-color: rgba(78, 108, 80, 0.59);
+}
+
+/* You can adjust the image size by increasing/decreasing the width, height */
+.custom-circle-image {
+  width: 7vw; /* note i used vw not px for better responsive */
+  height: 7vw;
+}
+
+.custom-profile-detail-image {
+  width: 20vw; /* note i used vw not px for better responsive */
+  height: 20vw;
+}
+
+.custom-circle-image img {
+  object-fit: cover;
+}
+
+.card-title {
+  letter-spacing: 1.1px;
+}
+
+.card-text {
+  font-family: MerriweatherRegular;
+  font-size: 22px;
+  line-height: initial;
+}
+
+table {
+  table-layout: fixed;
+}
+
+@media screen and (max-width: 600px) {
+  #create_profile {
+    margin-top: 0;
+    height: 100%;
+    width: 100%;
+  }
+}

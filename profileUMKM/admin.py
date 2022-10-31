@@ -1,3 +1,4 @@
 from django.contrib import admin
+from profileUMKM.models import ProfileUMKM
 
-# Register your models here.
+admin.site.register(ProfileUMKM)
