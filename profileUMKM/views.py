@@ -11,7 +11,9 @@ from profileUMKM.forms import ProfileUMKMForm
 
 def list_profile_UMKM(request):
     form = ProfileUMKMForm()
-    user = get_object_or_404(Profile, id=request.user.id)
+    user = ""
+    if request.user.is_authenticated:
+        user = get_object_or_404(Profile, user=request.user)
     return render(
         request,
         template_name="index.html",
@@ -25,7 +27,7 @@ def list_profile_UMKM(request):
 @login_required(login_url='/landing/login/')
 def create_profile_UMKM(request):
     form = ProfileUMKMForm()
-    user = get_object_or_404(Profile, id=request.user.id)
+    user = get_object_or_404(Profile, user=request.user)
 
     if request.method == "POST" and user.roles == "P":
         body = json.loads(request.body.decode("utf-8"))
@@ -51,10 +53,9 @@ def create_profile_UMKM(request):
 
 @login_required(login_url='/landing/login/')
 def delete_profile_UMKM(request, pk):
-    user = request.user
-    profile = get_object_or_404(Profile, id=user.id)
+    user = get_object_or_404(Profile, user=request.user)
 
-    if request.method == "DELETE" and profile.roles == "P":
+    if request.method == "DELETE" and user.roles == "P":
         profile_UMKM = get_object_or_404(ProfileUMKM, id=pk)
         profile_UMKM.delete()
         return HttpResponse(status=204)
