@@ -1,12 +1,18 @@
-{% extends 'base.html' %} {% load static %} {% block meta %}
-<title>Lokasi UMKM</title>
-<link rel="stylesheet" type="text/css" href=" {% static 'style.css' %} " />
-{% endblock meta %} {% block content %}
+{% extends 'base.html' %} 
+
+{% load static %} 
+
+{% block meta %}
+<title>Profile UMKM</title>
+<link rel="stylesheet" type="text/css" href=" {% static 'css/style.css' %} " />
+{% endblock meta %} 
+
+{% block content %}
 
 <div class="header-profile d-flex justify-content-between">
   <h1>Profil<br />UMKM</h1>
 
-  {% if user.is_authenticated and user.role == 'PEMILIK_UMKM' %}
+  {% if is_authenticated and user.roles == "P" %}
   <div class="align-self-center">
     <button
       type="button"
@@ -29,7 +35,8 @@
       </svg>
     </button>
   </div>
-  {% endif %} {% include 'modal.html' %}
+  {% endif %} 
+  {% include 'modal.html' %}
 </div>
 
 <main id="profil-umkm" class="row m-6"></main>
@@ -64,14 +71,16 @@
   };
 
   const getProfileUMKM = async () => {
-    const response = await fetch("{% url 'profile-UMKM:list_profile_UMKM_json' %}");
+    const response = await fetch(
+      "{% url 'profile-UMKM:list_profile_UMKM_json' %}"
+    );
     return await response.json();
   };
 
   const refreshProfileUMKM = async () => {
     const profilesUMKM = await getProfileUMKM();
     profilesUMKM.forEach((profileUMKM) => {
-      addCardLocation(profileUMKM);
+      addCardProfileUMKM(profileUMKM);
     });
     deleteProfileUMKMHandler();
   };
@@ -80,7 +89,7 @@
     return new Date(Date.parse(unixDate)).toLocaleDateString("en-US");
   };
 
-  const addCardLocation = ({
+  const addCardProfileUMKM = ({
     pk,
     fields: {
       nama,
@@ -111,7 +120,7 @@
       `
         <div
           class="modal fade bd-example-modal-lg"
-          id="detail-location-${id}"
+          id="detail-profile-umkm-${id}"
           tabindex="-1"
           aria-labelledby="detail_profileLabel"
           aria-hidden="true"
@@ -168,7 +177,7 @@
               </table>
               <div class="modal-footer">
                 <button type="button" class="btn" style="background-color: rgba(170, 139, 86, 0.15)" data-bs-dismiss="modal">Close</button>
-                {% if user.is_authenticated and user.role == 'PEMILIK_UMKM' %}
+                {% if is_authenticated and user.roles == "P" %}
                 <button id="${id}-delete" type="button" class="btn btn-danger delete-profile" data-bs-dismiss="modal">Delete</button>
                 {% endif %}
               </div>
@@ -186,7 +195,7 @@
     }
     const profileUMKM =
       `
-          <div data-bs-toggle="modal" data-bs-target="#detail-location-${id}" id="${id}-card" class="card" style="width: 15rem; height: 17rem;">
+          <div data-bs-toggle="modal" data-bs-target="#detail-profile-umkm-${id}" id="${id}-card" class="card" style="width: 15rem; height: 17rem;">
             <div class="card-body mt-3">
               <div class="border-0">` +
       photoTag +
@@ -205,9 +214,9 @@
   };
 
   const deleteProfileUMKMHandler = () => {
-    document.querySelectorAll(".delete-profile").forEach((tagLocation) => {
-      tagLocation.addEventListener("click", async () => {
-        const id = tagLocation.id.split("-")[0];
+    document.querySelectorAll(".delete-profile").forEach((tagProfileUMKM) => {
+      tagProfileUMKM.addEventListener("click", async () => {
+        const id = tagProfileUMKM.id.split("-")[0];
         try {
           const response = await fetch(`delete/${id}/`, {
             method: "DELETE",
@@ -217,10 +226,10 @@
               "X-CSRFToken": getCookie("csrftoken"),
             },
           });
-
-          if (response.statusText === "OK") {
+          
+          if (response.statusText === "No Content") {
             document.getElementById(`${id}-card`).remove();
-            document.getElementById(`detail-location-${id}`).remove();
+            document.getElementById(`detail-profile-umkm-${id}`).remove();
           }
         } catch (err) {
           console.error(err);
@@ -244,25 +253,29 @@
     };
 
     try {
-      const response = await fetch("{% url 'profile-UMKM:create_profile_UMKM' %}", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "X-CSRFToken": getCookie("csrftoken"),
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "{% url 'profile-UMKM:create_profile_UMKM' %}",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "X-CSRFToken": getCookie("csrftoken"),
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
-      const location = await response.json();
-      addCardLocation(location);
+      const profileUMKM = await response.json();
+      addCardProfileUMKM(profileUMKM);
+      deleteProfileUMKMHandler();
     } catch (err) {
       console.error(err);
     }
 
-    idForm.forEach((id) => {
-      document.getElementById(id).value = "";
-    });
+    //idForm.forEach((id) => {
+    //  document.getElementById(id).value = "";
+    //});
   };
   document.getElementById("form-create-profile-UMKM").onsubmit = addProfileUMKM;
 
