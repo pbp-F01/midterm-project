@@ -11,4 +11,5 @@ urlpatterns = [
     path('news_page/add_comment/<int:id>', add_comment, name='add_comment'), 
     path('show_url', show_url, name='show_url'), 
     path('show_profile', show_profile, name='show_profile'), 
+    # path('news_page/user_login', user_login, name='user_login'), 
 ]
