@@ -18,8 +18,6 @@ class Review(models.Model):
     comment = models.TextField(max_length=4000)
     umkm = models.ForeignKey(ProfileUMKM, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.umkm.title
     
     
 

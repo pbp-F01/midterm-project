@@ -1,8 +1,10 @@
 from django.shortcuts import render,redirect
-
+from requests import request
 from profileUMKM.models import ProfileUMKM
 from . models import Review 
 from . forms import ReviewForm
+from django.http import HttpResponse
+from django.core import serializers
 
 def home(request):
     items = ProfileUMKM.objects.all()
@@ -12,7 +14,6 @@ def home(request):
     }
     return render(request, "home.html",context)
 
-
 def rate(request, id):
     post = ProfileUMKM.objects.get(id=id)
     form = ReviewForm(request.POST or None)
@@ -20,7 +21,7 @@ def rate(request, id):
         author = request.POST.get('author')
         stars = request.POST.get('stars')
         comment = request.POST.get('comment')
-        review = Review(author=author, stars = stars,  comment=comment , umkm=post)
+        review = Review(author = author, stars = stars,  comment=comment , umkm=post)
         review.save()
         return redirect('reviewUMKM:success')
 
@@ -34,3 +35,11 @@ def rate(request, id):
 
 def success(request):
     return render(request, "success.html")
+
+def show_json_by_id(request, id):
+    ratingbyid = Review.objects.get(pk=id)
+    return HttpResponse(serializers.serialize('json', [ratingbyid]), content_type='application/json')
+
+def show_rating_json(request):
+    rating = Review.objects.all()
+    return HttpResponse(serializers.serialize('json', rating), content_type='application/json')
