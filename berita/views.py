@@ -14,6 +14,7 @@ from django.contrib.auth import authenticate
 
 # Create your views here.
 
+@login_required(login_url='/landing/login/')
 def show_landing_news(request):
     berita = NewsModel.objects.all()
     return render(request, "news_landing_page.html")
@@ -31,6 +32,7 @@ def show_json(request):
     data = NewsModel.objects.all()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
+@login_required(login_url='/landing/login/')
 def show_json_comment(request, id):
     data = CommentModel.objects.filter(news__pk=id)
     return HttpResponse(serializers.serialize("json", data, use_natural_foreign_keys=True), content_type="application/json")
@@ -39,13 +41,10 @@ def show_profile(request):
     data_profile = Profile.objects.all()
     return HttpResponse(serializers.serialize("json", data_profile), content_type="application/json")
 
-def user_login (request):
-    # current_user = request.user
-    return 0
-
-
-
+@login_required(login_url='/landing/login/')
 def add_comment(request, id):
+
+
     if (request.method == 'POST'):
         comments_substance = request.POST.get('comments_substance')
         try:
@@ -53,7 +52,7 @@ def add_comment(request, id):
         except NewsModel.DoesNotExist:
             raise Http404("No Model matches")
 
-       
+    if request.user.is_authenticated:
         profile = Profile.objects.get(user=request.user)
         new_comment = CommentModel.objects.create(
             comments_substance=comments_substance, 

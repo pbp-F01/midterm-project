@@ -264,8 +264,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#" style="color: white; opacity: 79%">Penjualan UMKM</a>
                         </li>
-
-                        <button type="button" style="border-radius: 50%; height: 40px; width: 40px;" class="btn btn-light" id="profile-btn" ><a href="{% url 'landing:logout' %}"></a></button>
+                        {% if user.is_authenticated %}
+                           <a href="{% url 'landing:login' %}">{{user}}</a>
+                        {% else %} 
+                            <p>Guest</p>
+                        {% endif %}
                 </ul>
             
             </div>
