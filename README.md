@@ -8,7 +8,7 @@
 	5. Sania Rizqi Maharani - 2006597001
    
 ## Tautan aplikasi Heroku
-https://pbp-f01.herokuapp.com/
+https://pbpf01-midterm.herokuapp.com/
 
 ## Cerita aplikasi yang diajukan serta manfaatnya
 Kelompok kami akan membuat aplikasi yang berkaitan dengan salah satu topik G20 Presidensi Indonesia yakni _Digital Transformation_ dan _Trade & Investment_. Deskripsi topik tersebut yakni untuk pencapaian potensi sebenarnya dari digitalisasi ekonomi global yang cepat dan membutuhkan lanskap baru kerjasama antar negara serta semua pemangku kepentingan untuk mengamankan kesejahteraan bersama di era digital. Memulihkan tatanan ekonomi global pasca pandemi menjadi lebih kuat, inklusif dan kolaboratif dengan memanfaatkan digitalisasi sangat penting dalam mengatasi berbagai permasalahan umat manusia, digitalisasi adalah kuncinya. Pembahasan agenda untuk menciptakan transformasi digital yang lebih inklusif kepada dunia menunjukkan betapa pentingnya peran forum G20 bagi dunia. Lintas isu digital dan ekonomi termasuk akselerasi UMKM ke dalam ekosistem digital, digital entrepreneurship, dan revitalisasi peran perempuan di tempat kerja dengan meningkatkan kapabilitas digital menjadi beberapa agenda prioritas yang akan dibahas. Isu-isu tersebut akan dibahas melalui beberapa forum, yaitu, Kelompok Kerja Ekonomi, Pemberdayaan G20, Bisnis 20, dan banyak lagi.

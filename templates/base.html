@@ -12,12 +12,96 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
+    <style>
+    @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+    * {
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    .h1{
+      padding-top: 7rem;
+      padding-bottom: 5.5rem;
+      text-align: center;
+      font-size: 190px;
+    }
+    
+    :root {
+      --main-color: #e6b30e;
+    }
+    .act,
+    .navbar ul li a:hover {
+      color: var(--main-color) !important;
+      border-bottom: 1px solid var(--main-color);
+    }
+    .theme-text {
+      color: var(--main-color) !important;
+    }
+    .middle {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      height: 80vh;
+      width: 70%;
+    }
+    .middle h1 {
+      font-size: 70px;
+    }
+    </style>
   {% block meta %}
   {% endblock meta %}
 </head>
 
 <body>
-  
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
+    <div class="container">
+      <a class="navbar-brand " href="#"><h3>GoUMKM</h3></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="mx-auto"></div>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Berita</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Profile UMKM</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Review UMKM</a>
+          </li>
+          {% if request.user.username != "" %}
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/logout"><b>Logout</b></a>
+          </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link text-white" href="/login"><b>Login</b></a>
+        </li>
+        {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+        
+
+      </div>
+    </div>
+  </nav>
   {% block content %}
   {% endblock content %}
   <script
