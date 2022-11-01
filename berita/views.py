@@ -16,8 +16,11 @@ from django.contrib.auth import authenticate
 
 # @login_required(login_url='/landing/login/')
 def show_landing_news(request):
-    berita = NewsModel.objects.all()
-    return render(request, "news_landing_page.html", berita)
+    news = NewsModel.objects.all()
+    context = {
+        'berita': news, 
+    }
+    return render(request, "news_landing_page.html", context)
 
 def show_news(request, id):
     berita = NewsModel.objects.filter(pk=id)
