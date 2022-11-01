@@ -35,7 +35,7 @@ def register(request):
             Profile.objects.create(
                 user=pengguna, name=pengguna.name, email=pengguna.email, roles=pengguna.roles)
             messages.success(request, 'Akun berhasil dibuat!')
-            return redirect("berita:show_landing_news")
+            return redirect("landing:login")
 
     context = {'form': form}
     return render(request, 'register.html', context)
@@ -56,6 +56,12 @@ def login_user(request):
             messages.info(request, 'Username atau Password salah!')
     context = {}
     return render(request, 'login.html', context)
+
+@login_required(login_url='/landing/login/')
+def show_json(request):
+    user = request.user
+    data = Profile.objects.filter(user=user)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
 
 @login_required(login_url='/landing/login/')
