@@ -49,7 +49,7 @@ def login_user(request):
         if user is not None:
             login(request, user)
             response = HttpResponseRedirect(
-                reverse("berita:show_landing_news"))
+                reverse("landing:index"))
             response.set_cookie('last_login', str(datetime.datetime.now()))
             return response
         else:
