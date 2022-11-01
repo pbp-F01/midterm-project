@@ -11,30 +11,39 @@ from profileUMKM.forms import ProfileUMKMForm
 
 def list_profile_UMKM(request):
     form = ProfileUMKMForm()
-    return render(request, template_name="index.html", context={"form": form})
-
+    user = ""
+    if request.user.is_authenticated:
+        user = get_object_or_404(Profile, user=request.user)
+    return render(
+        request,
+        template_name="index.html",
+        context={
+            "form": form,
+            "user": user,
+            "is_authenticated": request.user.is_authenticated,
+        },
+    )
 
 @login_required(login_url='/landing/login/')
 def create_profile_UMKM(request):
     form = ProfileUMKMForm()
-    user = request.user
-    profile = get_object_or_404(Profile, id=user.id)
+    user = get_object_or_404(Profile, user=request.user)
 
-    if request.method == "POST" and profile.roles == "P":
+    if request.method == "POST" and user.roles == "P":
         body = json.loads(request.body.decode("utf-8"))
         form = ProfileUMKMForm(body)
 
         if form.is_valid():
             form.cleaned_data["pemilik"] = user
             data = form.cleaned_data
-            profile = ProfileUMKM.objects.create(**data)
+            profileUMKM = ProfileUMKM.objects.create(**data)
 
-            data["pemilik"] = user.username
+            data["pemilik"] = user.name
             content = {
                 "fields": data,
-                "pk": profile.pk,
+                "pk": profileUMKM.pk,
             }
-            return JsonResponse(content)
+            return JsonResponse(content, status=201)
 
         else:
             print(form.errors)
@@ -44,13 +53,12 @@ def create_profile_UMKM(request):
 
 @login_required(login_url='/landing/login/')
 def delete_profile_UMKM(request, pk):
-    user = request.user
-    profile = get_object_or_404(Profile, id=user.id)
+    user = get_object_or_404(Profile, user=request.user)
 
-    if request.method == "DELETE" and profile.roles == "P":
+    if request.method == "DELETE" and user.roles == "P":
         profile_UMKM = get_object_or_404(ProfileUMKM, id=pk)
         profile_UMKM.delete()
-        return JsonResponse({"status": "deleted"})
+        return HttpResponse(status=204)
 
 
 def list_profile_UMKM_json(request):

@@ -1,5 +1,5 @@
+from cgitb import reset
 import datetime
-import profile
 from .models import Profile
 from .forms import SignUp
 from django.shortcuts import render, redirect
@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.core import serializers
 
 # Create your views here.
 
@@ -18,7 +19,10 @@ def index(request):
 
 def logout_user(request):
     logout(request)
-    return redirect('landing:login')
+    response = HttpResponseRedirect(
+        reverse("landing:login"))
+    response.delete_cookie('last_login')
+    return response
 
 
 def register(request):
@@ -46,8 +50,16 @@ def login_user(request):
             login(request, user)
             response = HttpResponseRedirect(
                 reverse("berita:show_landing_news"))
+            response.set_cookie('last_login', str(datetime.datetime.now()))
             return response
         else:
             messages.info(request, 'Username atau Password salah!')
     context = {}
     return render(request, 'login.html', context)
+
+
+@login_required(login_url='/landing/login/')
+def profile(request):
+    user = request.user
+    data = Profile.objects.filter(user=user)
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
