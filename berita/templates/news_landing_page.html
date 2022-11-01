@@ -289,9 +289,9 @@
                     
                 </ol>
                 <div class="carousel-inner" style="box-shadow: 5px 5px 10px;">
-                    
+                    {% for news in berita %}
                     <div class="carousel-item active" id="headline1"  >
-                        <div id="headline1-bg" class="overlay-image"></div>
+                        <div id="headline1-bg" class="overlay-image">{{news.news_image}}</div>
                         <div class="container-headline1" >
                             <a id="first-headline"></a>
                             <span id="newsbody1" class="d-inline-block text-truncate" style="max-width: 1010px; font-size: large;"></span>
