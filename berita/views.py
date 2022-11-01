@@ -20,7 +20,7 @@ def show_landing_news(request):
     context = {
         'berita': news, 
     }
-    return render(request, "news_landing_page.html", context)
+    return render(request, 'news_landing_page.html', context)
 
 def show_news(request, id):
     berita = NewsModel.objects.filter(pk=id)
@@ -29,7 +29,7 @@ def show_news(request, id):
         'news': berita, 
         'comments': comments, 
     }
-    return render(request, "news_page.html", context)
+    return render(request, 'news_page.html', context)
 
 def show_json(request):
     data = NewsModel.objects.all()
