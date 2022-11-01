@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
 
-<html lang="en">
+
 
 <style>
     .card{
         margin-left: 50px;
     }
-
 </style>
 
-<head>
+{% block meta %}
     <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,7 +52,8 @@
 
     
         $(document).on('submit', '#addComment', function(e){
-            addComment();
+            if(sessionStorage.getItem('status') != null) {
+                addComment();
             addComment();
             e.preventDefault(); 
             $.ajax({
@@ -69,20 +69,25 @@
             })
             addComment();
             addComment();
+            } else {
+                alert("You must have an account first");
+                
+            }
+            
             
         })
 
 
     </script>
 
-</head>
+{% endblock meta %}
     
 
-<body>
+{% block content %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script> -->
     
-    <nav class="navbar navbar-expand-lg " style="background-color: rgba(57, 81, 68, 1); height: 70px;">
+    <!-- <nav class="navbar navbar-expand-lg " style="background-color: rgba(57, 81, 68, 1); height: 70px;">
         <div class="container-fluid">
         
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -109,9 +114,9 @@
         
         </div>
         </div>
-    </nav>
+    </nav> -->
     
-    <div class="container-sm" style="width: 800px; padding-top: 25px;">
+    <div class="container-sm" style="width: 800px; padding-top: 100px;">
         {% for berita in news %}
             <h1 style="text-align: center;">{{berita.news_title}}</h1>
             <img src={{berita.news_image}} alt="Jakpreneur" style="margin-bottom: 25px; margin-top: 25px; display: block;
@@ -168,9 +173,14 @@
                                 <div class="modal-body">
                                     <textarea id="comments_substance" class="form-control" aria-label="With textarea" rows="2" cols="50" placeholder="Comment Here" style="margin-bottom: 10px; margin-top: 10px; "></textarea>
                                 </div>
+                               
                                 <div class="modal-footer">
                                     <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Send Comment</button>
+                                    {% if user.is_authenticated == false %}
+                                    alert("Login first"); 
+                                    {% endif %}
                                 </div>
+                                
                             </form>
                         </div>
                     </div>
@@ -188,6 +198,5 @@
 
         
 
-</body>
 
-</html>
+{% endblock content %}
