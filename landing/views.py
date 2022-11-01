@@ -14,7 +14,7 @@ from django.core import serializers
 
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, 'home.html')
 
 
 def logout_user(request):
@@ -56,6 +56,7 @@ def login_user(request):
             messages.info(request, 'Username atau Password salah!')
     context = {}
     return render(request, 'login.html', context)
+
 
 @login_required(login_url='/landing/login/')
 def show_json(request):
