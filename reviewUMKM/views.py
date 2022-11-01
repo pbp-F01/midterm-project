@@ -6,6 +6,7 @@ from . forms import ReviewForm
 
 def home(request):
     items = ProfileUMKM.objects.all()
+    print(items)
     context = {
         'items':items
     }
@@ -21,7 +22,7 @@ def rate(request, id):
         comment = request.POST.get('comment')
         review = Review(author=author, stars = stars,  comment=comment , umkm=post)
         review.save()
-        return redirect('success')
+        return redirect('reviewUMKM:success')
 
     form = ReviewForm()
     context = {
