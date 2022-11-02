@@ -9,4 +9,5 @@ urlpatterns = [
     path('login/', login_user, name='login'),
     path('logout/', logout_user, name='logout'),
     path('json', show_json, name='show_json'),
+    path('profile/', profile, name='profile'),
 ]
