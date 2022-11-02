@@ -1,5 +1,5 @@
-from statistics import mode
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Laporan(models.Model):
@@ -7,3 +7,4 @@ class Laporan(models.Model):
         date = models.DateField()
         jumlah_terjual = models.IntegerField()
         revenue = models.IntegerField()
+        user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
