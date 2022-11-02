@@ -99,73 +99,73 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-        // function showHeadline() {
-        //     $.get("{% url 'berita:json'%}", function(data){
+        function showHeadline() {
+            $.get("{% url 'berita:json'%}", function(data){
 
-        //         for (var i = 0; i < 1; i++) {
-        //             var news_title = document.getElementById("first-headline"); 
-        //             var news_body = document.getElementById("newsbody1"); 
-        //             var news_image = document.getElementById("headline1-bg"); 
+                for (var i = 0; i < 1; i++) {
+                    var news_title = document.getElementById("first-headline"); 
+                    var news_body = document.getElementById("newsbody1"); 
+                    var news_image = document.getElementById("headline1-bg"); 
                     
-        //             news_image.style.backgroundImage = "url(" + data[i].fields.news_image + ")";    
-        //             // console.log(news_image); 
+                    news_image.style.backgroundImage = "url(" + data[i].fields.news_image + ")";    
+                    // console.log(news_image); 
 
-        //             news_title.innerHTML = data[i].fields.news_title; 
-        //             news_title.setAttribute("href", "news_page/1");
+                    news_title.innerHTML = data[i].fields.news_title; 
+                    news_title.setAttribute("href", "news_page/1");
 
-        //             news_body.innerHTML = data[i].fields.news_body; 
+                    news_body.innerHTML = data[i].fields.news_body; 
                      
                     
-        //             news_title.style.color = "white"; 
+                    news_title.style.color = "white"; 
                     
-        //             // $(".container-headline1").append(news_title); 
-        //             // $(".container-headline1").append(news_body); 
-        //         }
+                    // $(".container-headline1").append(news_title); 
+                    // $(".container-headline1").append(news_body); 
+                }
 
-        //         for (var j = 1; j < 2; j++) {
-        //             var news_title = document.getElementById("second-headline"); 
-        //             var news_body = document.getElementById("newsbody2"); 
-        //             var news_image = document.getElementById("headline2-bg"); 
+                for (var j = 1; j < 2; j++) {
+                    var news_title = document.getElementById("second-headline"); 
+                    var news_body = document.getElementById("newsbody2"); 
+                    var news_image = document.getElementById("headline2-bg"); 
 
-        //             news_image.style.backgroundImage = "url(" + data[j].fields.news_image + ")";    
-        //             console.log(news_image); 
+                    news_image.style.backgroundImage = "url(" + data[j].fields.news_image + ")";    
+                    console.log(news_image); 
 
-        //             news_title.innerHTML = data[j].fields.news_title; 
-        //             news_title.setAttribute("href", "news_page/2");
+                    news_title.innerHTML = data[j].fields.news_title; 
+                    news_title.setAttribute("href", "news_page/2");
 
-        //             news_body.innerHTML = data[j].fields.news_body; 
+                    news_body.innerHTML = data[j].fields.news_body; 
                      
                     
-        //             news_title.style.color = "white"; 
+                    news_title.style.color = "white"; 
                     
 
-        //             // $(".container-headline2").append(news_title); 
-        //             // $(".container-headline2").append(news_body); 
+                    // $(".container-headline2").append(news_title); 
+                    // $(".container-headline2").append(news_body); 
 
-        //         }
+                }
 
-        //         for (var k = 2; k <= 2; k++) {
-        //             var news_title = document.getElementById("third-headline"); 
-        //             var news_body = document.getElementById("newsbody3"); 
-        //             var news_image = document.getElementById("headline3-bg"); 
+                for (var k = 2; k <= 2; k++) {
+                    var news_title = document.getElementById("third-headline"); 
+                    var news_body = document.getElementById("newsbody3"); 
+                    var news_image = document.getElementById("headline3-bg"); 
                     
-        //             news_image.style.backgroundImage = "url(" + data[k].fields.news_image + ")";    
-        //             console.log(news_image); 
+                    news_image.style.backgroundImage = "url(" + data[k].fields.news_image + ")";    
+                    console.log(news_image); 
 
-        //             news_title.innerHTML = data[k].fields.news_title; 
-        //             news_title.setAttribute("href", "news_page/3");
+                    news_title.innerHTML = data[k].fields.news_title; 
+                    news_title.setAttribute("href", "news_page/3");
 
-        //             news_body.innerHTML = data[k].fields.news_body; 
+                    news_body.innerHTML = data[k].fields.news_body; 
                      
                     
-        //             news_title.style.color = "white"; 
-        //         }
-        //     })
-        // }
+                    news_title.style.color = "white"; 
+                }
+            })
+        }
 
-        // $(document).ready(function(){
-        //     showHeadline(); 
-        // })
+        $(document).ready(function(){
+            showHeadline(); 
+        })
 
         function showNewsCard() {
             $.get("{% url 'berita:json'%}",function(data){
@@ -245,39 +245,7 @@
 
     <div style="background: linear-gradient(0deg, rgba(78,108,80,0.5133403703278187) 0%, rgba(78,108,80,1) 75%); padding-bottom: 65px;">
 
-        <!-- <nav class="navbar navbar-expand-lg " style="background-color: rgba(57, 81, 68, 1);  height: 70px;">
-            <div class="container-fluid">
-            
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ">
-                
-                        <li class="nav-item" style="text-align: center;">
-                            <a class="nav-link" href="#" style="color: white; opacity: 79%">Review UMKM</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" style="color: white; opacity: 79%">Profil UMKM</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" style="color: white; opacity: 79%">Review UMKM</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#" style="color: white; opacity: 79%">Penjualan UMKM</a>
-                        </li>
-                        {% if user.is_authenticated %}
-                           <a href="{% url 'landing:login' %}">{{user}}</a>
-                        {% else %} 
-                            <p>Guest</p>
-                        {% endif %}
-                </ul>
-            
-            </div>
-            </div>
-        </nav> -->
-
-    <div class="container" style="position: relative; margin-top: 10px; ;">
+    <div class="container" style="position: relative; padding-top: 50px; ;">
             
         <div id="newsCarousel" class="carousel slide" data-ride="carousel"  style="margin-top: 50px; position: relative;">
             <ol class="carousel-indicators">
@@ -286,45 +254,40 @@
                 <li data-target="#newsCarousel" data-bs-slide-to="2"></li>
                 
             </ol>
-             {% for news in berita %}
+             
             <div class="carousel-inner" style="box-shadow: 5px 5px 10px;">
                 
-                    {% if news.pk == 1 %}
+                    
                     <div class="carousel-item active" id="headline1"  >
                         <div id="headline1-bg" class="overlay-image" style="background-image: url({{news.news_image}});"></div>
                         <div class="container-headline1" >
-                            <a id="first-headline" href="news_page/1">{{news.news_title}}</a>
-                            <span id="newsbody1" class="d-inline-block text-truncate" style="max-width: 1010px; font-size: large;">{{news.news_body}}</span>
+                            <a id="first-headline"></a>
+                            <span id="newsbody1" class="d-inline-block text-truncate" style="max-width: 1010px; font-size: large;"></span>
                     
                         </div>
-                    {% endif %} 
+                    
                     </div>
-                {% endfor %}  
+                
                  
-                {% for news in berita %}
-                {% if news.pk == 2 %}
+                
                 <div class="carousel-item">
                     <div id="headline2-bg" class="overlay-image" style="background-image: url({{news.news_image}});"></div>
                     <div class="container-headline2">
-                        <a id="second-headline" href="news_page/2">{{news.news_title}}</a>
-                        <span id="newsbody2" class="d-inline-block text-truncate" style="max-width: 1010px; font-size: large;">{{news.news_body}}</span>
+                        <a id="second-headline"></a>
+                        <span id="newsbody2" class="d-inline-block text-truncate" style="max-width: 1010px; font-size: large;"></span>
                     </div>
                 </div>
-                {% endif %} 
-                {% endfor %}  
+                
 
-                {% for news in berita %}
-                {% if news.pk == 3 %}
+                
                 <div class="carousel-item">
                     <div id="headline3-bg" class="overlay-image" style="background-image: url({{news.news_image}});"></div>
                     <div class="container-headline3">
-                        <a id="third-headline" href="news_page/3">{{news.news_title}}</a>
-                        <span id="newsbody3" class="d-inline-block text-truncate" style="max-width: 1010px; font-size: large;">{{news.news_body}}</span>
+                        <a id="third-headline"></a>
+                        <span id="newsbody3" class="d-inline-block text-truncate" style="max-width: 1010px; font-size: large;"></span>
                     </div>
                 </div>
-                {% endif %} 
-                {% endfor %}  
-                
+                  
                 <a href="#newsCarousel" class="carousel-control-prev" role="button" data-bs-slide="prev">
                     <span class="visually-hidden">Previous</span>
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
