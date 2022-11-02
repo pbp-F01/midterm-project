@@ -87,7 +87,11 @@
             <li class="nav-item">
               <a class="nav-link text-white" href="/reviewUMKM/">Review UMKM</a>
             </li>
-            {% if request.user.is_authenticated and user.roles == "K"%}
+            {% if user.konsumen %}
+            <li class="nav-item">
+              <a class="nav-link text-white" href="/reviewUMKM/">Review UMKM</a>
+            </li>
+            {% endif %}
             <li class="nav-item">
               <a class="nav-link text-white" href="/landing/profile">User</a>
             </li>
@@ -96,7 +100,7 @@
                 ><b>Logout</b></a
               >
             </li>
-            {% elif request.user.is_authenticated%}
+            {% if request.user.is_authenticated%}
             <li class="nav-item">
               <a class="nav-link text-white" href="/penjualan/">Penjualan</a>
             </li>

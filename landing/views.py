@@ -58,13 +58,15 @@ def login_user(request):
     return render(request, 'login.html', context)
 
 
-def show_roles(request, id):
+def show_roles(request):
+    user = ""
     if request.user.is_authenticated:
-        profile = get_object_or_404(Profile, user=request.user)
+        user = Profile.objects.filter(user=request.user)
     context = {
-        'user': profile,
+        'user': user,
+        "is_authenticated": request.user.is_authenticated,
     }
-    return render(request, 'base.html', context)
+    return render(request, "base.html", context)
 
 
 @login_required(login_url='/landing/login/')
