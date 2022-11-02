@@ -203,14 +203,19 @@
         var datanya = data;
         var nameHtml = "";
         var emailHtml = "";
-        var roleHml = "";
+        var roleHtml = "";
         var item = datanya[0].fields;
         nameHtml += item.name;
         emailHtml += item.email;
-        roleHml += item.roles;
+        if(item.roles="P"){
+          roleHtml += "Pemilik";}
+        else if(item.roles="I"){
+          roleHtml += "Investor";}
+        else{
+          roleHtml += "Konsumen";}
         document.getElementById('name').innerHTML = nameHtml;
         document.getElementById('email').innerHTML = emailHtml;
-        document.getElementById('role').innerHTML = roleHml;
+        document.getElementById('role').innerHTML = roleHtml;
       },
     });
 });
