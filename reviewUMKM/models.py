@@ -1,23 +1,14 @@
 from django.db import models
-from django.utils import timezone
 from profileUMKM.models import ProfileUMKM
+from landing.models import Profile
 
-# Create your models here.
 
 class Review(models.Model):
-    author = models.CharField(max_length=40, default="anonymous")
-    review_date = models.DateTimeField(default=timezone.now)
-    rate_choices = (
-        (1,1),
-        (2,2),
-        (3,3),
-        (4,4),
-        (5,5)
+    author = models.ForeignKey(
+        to=Profile, on_delete=models.CASCADE, related_name="reviews"
     )
-    stars = models.IntegerField(choices=rate_choices)
-    comment = models.TextField(max_length=4000)
-    umkm = models.ForeignKey(ProfileUMKM, on_delete=models.CASCADE)
-
-    
-    
-
+    review_date = models.DateTimeField(auto_now_add=True)
+    rate_choices = ((1, 1), (2, 2), (3, 3), (4, 4), (5, 5))
+    rating = models.IntegerField(choices=rate_choices)
+    comment = models.TextField(max_length=2048)
+    umkm = models.ForeignKey(to=ProfileUMKM, on_delete=models.CASCADE)

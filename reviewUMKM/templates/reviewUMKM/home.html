@@ -1,0 +1,81 @@
+{% extends "base.html" %} {% load static %} {% block meta %}
+<title>Review UMKM</title>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href=" {% static 'reviewUMKM/style.css' %} "
+/>
+{% endblock meta %} {% block content %}
+
+<div class="header-review d-flex justify-content-between">
+  <h1>Review<br />UMKM</h1>
+</div>
+
+<div id="profil-umkm"></div>
+
+<script>
+  const getProfilesUMKM = async () => {
+    const response = await fetch(
+      "{% url 'profile-UMKM:list_profile_UMKM_json' %}"
+    );
+    return await response.json();
+  };
+
+  const refreshProfilesUMKM = async () => {
+    const profilesUMKM = await getProfilesUMKM();
+    profilesUMKM.forEach((profileUMKM) => {
+      addCardProfileUMKM(profileUMKM);
+    });
+  };
+
+  const addCardProfileUMKM = ({ pk, fields: { nama, pemilik, foto } }) => {
+    const id = pk;
+
+    let photoTag = "";
+
+    if (foto) {
+      photoTag = `
+        <div class="position-relative rounded-circle overflow-hidden mx-auto custom-circle-image">
+          <img src="${foto}" alt="Avatar" class="w-100 h-100">
+          <svg>
+            <use 
+              href="{% static "reviewUMKM/star.svg" %}#my_image"
+            >
+            </use>
+          </svg>
+        </div>
+      `;
+    }
+
+    var sensorID = "href='{% url 'reviewUMKM:rate' 12345 %}'";
+    var url_mask = sensorID.replace("12345", id);
+    console.log(url_mask)
+    const profileUMKM =
+      `
+      <div id="card-${id}" class="card flex-row flex-wrap card-review">
+        <div class="card-header border-0 card-image-stars">
+            ` +
+      photoTag +
+      `
+        </div>
+        <div class="card-block mx-6 card-body">
+            <h4 class="card-title">${nama}</h4>
+            <p class="card-text">${pemilik}</p>
+            {% if is_authenticated and user.roles == "K" %}
+            <a `+url_mask+`>
+              <button type="button" class="btn btn-secondary" style="background-color: #395144">Rate Now</button>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    `;
+
+    document.getElementById("profil-umkm").innerHTML += profileUMKM;
+  };
+
+  refreshProfilesUMKM();
+</script>
+
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+
+{% endblock content %}
