@@ -167,72 +167,72 @@
             showHeadline(); 
         })
 
-        // function showNewsCard() {
-        //     $.get("{% url 'berita:json'%}",function(data){
+        function showNewsCard() {
+            $.get("{% url 'berita:json'%}",function(data){
                 
-        //             var newsCard = document.getElementById("card-news"); 
-        //             newsCard.innerHTML = ""
-        //             let htmlstring = ``
-        //             let href = "news_page/"
+                    var newsCard = document.getElementById("card-news"); 
+                    newsCard.innerHTML = ""
+                    let htmlstring = ``
+                    let href = "news_page/"
 
-        //             for (var i = 3; i < data.length -5; i++) {
-        //             href.concat(i+1)
-        //             htmlstring += 
+                    for (var i = 3; i < data.length -5; i++) {
+                    href.concat(i+1)
+                    htmlstring += 
                     
-        //             `
-        //                 <div class="card h-100 rounded-0 " id="news-card">
-        //                     <img class="card-img-top rounded-0" src="${data[i].fields.news_image}" alt="news image">
-        //                     <div class="card-body" >
-        //                         <a class="card-title" id="newsCardTitle" href=${href.concat(i+1)}>${data[i].fields.news_title}</a>
-        //                         <p class="card-text" id="card-news-body">${data[i].fields.news_body}</p>
-        //                     </div>
-        //                 </div>
-        //             `
+                    `
+                        <div class="card h-100 rounded-0 " id="news-card">
+                            <img class="card-img-top rounded-0" src="${data[i].fields.news_image}" alt="news image">
+                            <div class="card-body" >
+                                <a class="card-title" id="newsCardTitle" href=${href.concat(i+1)}>${data[i].fields.news_title}</a>
+                                <p class="card-text" id="card-news-body">${data[i].fields.news_body}</p>
+                            </div>
+                        </div>
+                    `
                     
-        //             }
+                    }
 
-        //             newsCard.innerHTML = htmlstring
-        //             let str = document.getElementById("card-news-body").innerHTML; 
-        //             let res = str.replace(/\\n/g, '<br> <br>');
-        //             document.getElementById("card-news-body").innerHTML = res;
-        //     })
-        // }
+                    newsCard.innerHTML = htmlstring
+                    let str = document.getElementById("card-news-body").innerHTML; 
+                    let res = str.replace(/\\n/g, '<br> <br>');
+                    document.getElementById("card-news-body").innerHTML = res;
+            })
+        }
 
-        // $(document).ready(function(){
-        //     showNewsCard(); 
-        // })
+        $(document).ready(function(){
+            showNewsCard(); 
+        })
 
-        // function showSideNews(){
-        //     $.get("{% url 'berita:json'%}", function(data){
-        //         var sideNews = document.getElementById("side-news"); 
-        //         sideNews.innerHTML = ""
-        //         let htmlstring = ``
-        //         let href = "news_page/"
+        function showSideNews(){
+            $.get("{% url 'berita:json'%}", function(data){
+                var sideNews = document.getElementById("side-news"); 
+                sideNews.innerHTML = ""
+                let htmlstring = ``
+                let href = "news_page/"
 
-        //         for (var i = data.length - 5; i < data.length; i++) {
-        //             href.concat(i+1)
-        //             htmlstring += 
+                for (var i = data.length - 5; i < data.length; i++) {
+                    href.concat(i+1)
+                    htmlstring += 
                     
-        //             `
+                    `
                         
-        //                 <div class='container2' id="side-news">
+                        <div class='container2' id="side-news">
                             
-        //                     <div style='margin-left:0px;'>
-        //                         <a  href=${href.concat(i+1)}>${data[i].fields.news_title}</a>
-        //                         <div style="font-size:.6em">'${data[i].fields.news_published}</div>
-        //                     </div>
-        //                 </div>
+                            <div style='margin-left:0px;'>
+                                <a  href=${href.concat(i+1)}>${data[i].fields.news_title}</a>
+                                <div style="font-size:.6em">'${data[i].fields.news_published}</div>
+                            </div>
+                        </div>
                         
-        //             `
+                    `
                     
-        //             }
-        //             sideNews.innerHTML = htmlstring
-        //     })
-        // }
+                    }
+                    sideNews.innerHTML = htmlstring
+            })
+        }
 
-        // $(document).ready(function(){
-        //     showSideNews(); 
-        // })
+        $(document).ready(function(){
+            showSideNews(); 
+        })
 
 
     </script>
@@ -293,7 +293,7 @@
                     <div class="carousel-item active" id="headline1"  >
                         <div id="headline1-bg" class="overlay-image" style="background-image: url({{news.news_image}});"></div>
                         <div class="container-headline1" >
-                            <a id="first-headline" href="news_page/1"></a>
+                            <a id="first-headline"></a>
                             <span id="newsbody1" class="d-inline-block text-truncate" style="max-width: 1010px; font-size: large;"></span>
                     
                         </div>
@@ -305,8 +305,8 @@
                 <div class="carousel-item">
                     <div id="headline2-bg" class="overlay-image" style="background-image: url({{news.news_image}});"></div>
                     <div class="container-headline2">
-                        <a id="second-headline" href="news_page/2">{{news.news_title}}</a>
-                        <span id="newsbody2" class="d-inline-block text-truncate" style="max-width: 1010px; font-size: large;">{{news.news_body}}</span>
+                        <a id="second-headline"></a>
+                        <span id="newsbody2" class="d-inline-block text-truncate" style="max-width: 1010px; font-size: large;"></span>
                     </div>
                 </div>
                 
@@ -315,8 +315,8 @@
                 <div class="carousel-item">
                     <div id="headline3-bg" class="overlay-image" style="background-image: url({{news.news_image}});"></div>
                     <div class="container-headline3">
-                        <a id="third-headline" href="news_page/3">{{news.news_title}}</a>
-                        <span id="newsbody3" class="d-inline-block text-truncate" style="max-width: 1010px; font-size: large;">{{news.news_body}}</span>
+                        <a id="third-headline"></a>
+                        <span id="newsbody3" class="d-inline-block text-truncate" style="max-width: 1010px; font-size: large;"></span>
                     </div>
                 </div>
                   
