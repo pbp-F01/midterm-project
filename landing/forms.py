@@ -6,9 +6,9 @@ from django.contrib.auth.forms import UserCreationForm
 class SignUp(UserCreationForm):
     name = forms.CharField(max_length=100)
     email = forms.EmailField(max_length=100)
-    ROLES_CHOICES = [('Konsumen', 'Konsumen'),
-                     ('Investor', 'Investor'),
-                     ('Pemilik', 'Pemilik'), ]
+    ROLES_CHOICES = [('K', 'Konsumen'),
+                     ('I', 'Investor'),
+                     ('P', 'Pemilik')]
     roles = forms.ChoiceField(
         label="Roles",
         required=True,
