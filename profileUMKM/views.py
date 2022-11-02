@@ -16,7 +16,7 @@ def list_profile_UMKM(request):
         user = get_object_or_404(Profile, user=request.user)
     return render(
         request,
-        template_name="index.html",
+        template_name="profileUMKM/index.html",
         context={
             "form": form,
             "user": user,
@@ -24,7 +24,8 @@ def list_profile_UMKM(request):
         },
     )
 
-@login_required(login_url='/landing/login/')
+
+@login_required(login_url="/landing/login/")
 def create_profile_UMKM(request):
     form = ProfileUMKMForm()
     user = get_object_or_404(Profile, user=request.user)
@@ -51,7 +52,7 @@ def create_profile_UMKM(request):
     return HttpResponseRedirect(reverse("profile-UMKM:list_profile_UMKM"))
 
 
-@login_required(login_url='/landing/login/')
+@login_required(login_url="/landing/login/")
 def delete_profile_UMKM(request, pk):
     user = get_object_or_404(Profile, user=request.user)
 
@@ -63,6 +64,14 @@ def delete_profile_UMKM(request, pk):
 
 def list_profile_UMKM_json(request):
     data = ProfileUMKM.objects.all()
+    return HttpResponse(
+        serializers.serialize("json", data, use_natural_foreign_keys=True),
+        content_type="application/json",
+    )
+
+
+def get_profile_UMKM_json(request, pk):
+    data = ProfileUMKM.objects.filter(id=pk)
     return HttpResponse(
         serializers.serialize("json", data, use_natural_foreign_keys=True),
         content_type="application/json",
