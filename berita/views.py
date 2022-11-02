@@ -15,7 +15,6 @@ from berita.forms import CommentForm
 
 # Create your views here.
 
-# @login_required(login_url='/landing/login/')
 def show_landing_news(request):
     
     news = NewsModel.objects.all()
@@ -25,8 +24,9 @@ def show_landing_news(request):
     return render(request, 'news_landing_page.html', context)
 
 def show_news(request, id):
+    profile = None
     berita = NewsModel.objects.filter(pk=id)
-    comments = CommentModel.objects.filter(news__pk=id)
+    comments = CommentModel.objects.filter(news__pk=id).order_by('date_added').values()
     if request.user.is_authenticated:
         profile = get_object_or_404(Profile, user=request.user)
     context = {
@@ -40,7 +40,6 @@ def show_json(request):
     data = NewsModel.objects.all()
     return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
-# @login_required(login_url='/landing/login/')
 def show_json_comment(request, id):
     data = CommentModel.objects.filter(news__pk=id)
     return HttpResponse(serializers.serialize("json", data, use_natural_foreign_keys=True), content_type="application/json")
@@ -77,11 +76,4 @@ def add_comment(request, id):
 def show_url(request):
     return request.path_info
 
-def show_roles(request):
-    profile = ""
-    if request.user.is_authenticated:
-        profile = get_object_or_404(user=request.user)
-    context={
-        'user':profile, 
-    }
-    return render(request, "news_page.html", context)
+
