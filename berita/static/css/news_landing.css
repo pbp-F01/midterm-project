@@ -1,0 +1,127 @@
+.carousel-item {
+    height: 30rem;
+    background: #777;
+    color:white; 
+    position: relative;
+    background-position: center;
+    background-size: cover;
+}
+.container-headline1, .container-headline2, .container-headline3 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0; 
+    padding-bottom: 50px;
+    font-size: 25px;
+    color: white;
+    text-decoration: none;
+    margin-left: 100px;
+}
+.card{
+margin-right: 20px;
+margin-top: 30px;
+padding-bottom: 30px;
+width: 20rem;  
+
+}
+.p-2{
+    margin-bottom: 20px;
+}
+.container2{
+    margin-bottom: 20px;
+    width:100%;
+    height:auto;
+    padding:1%;
+    
+}
+
+.newsicon {
+margin-left:2%;
+float:left; 
+height:88px;
+width:81px;	
+object-fit: cover;
+margin-right: 5%;
+} 
+
+.overlay-image {
+    position: absolute;
+    bottom: 0; 
+    left: 0; 
+    right: 0; 
+    top: 0;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.3;
+
+}
+
+#card-news-body, #newsCardTitle {
+    overflow:hidden;
+    max-height: 8rem;
+    -webkit-box-orient: vertical;
+    display: block;
+    display: -webkit-box;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 4;
+}
+
+#newsCardTitle {
+    overflow:hidden;
+    max-height: 8rem;
+    -webkit-box-orient: vertical;
+    display: block;
+    display: -webkit-box;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+}
+.card-img-top {
+    max-height: 180px;
+    object-fit: cover;
+}
+#news-card{
+    margin-right: 70px;
+
+}
+#first-headline, #second-headline, #third-headline{
+    color: white;
+}
+#published-date{
+    font-size: 12px;
+}
+#side-news{
+    margin-left: 0px;
+}
+#newsCarousel{
+    margin-top: 50px; 
+    position: relative;
+}
+#latest-news, #news-today{
+    margin-top: 50px; 
+}
+.news-section{
+    margin-bottom: 25px;
+}
+hr{
+    opacity: 15%; background-color: black; height: 1px; border: none;
+}
+#card-news{
+    margin-bottom: 15px; flex-wrap: wrap;
+}
+#newsbody1, #newsbody2, #newsbody3{
+    max-width: 1010px; font-size: large;
+}
+#landing-title{
+    text-align: center; margin-top: 30px; font-size: 54px; opacity: 81%;
+}
+#main-div {
+    background: linear-gradient(0deg, rgba(78,108,80,0.5133403703278187) 0%, rgba(78,108,80,1) 75%); padding-bottom: 65px;
+}
+#main-div2{
+    position: relative; padding-top: 50px; ;
+}
+.carousel-inner{
+   box-shadow: 5px 5px 10px;
+}

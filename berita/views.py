@@ -1,6 +1,6 @@
 from datetime import datetime
 from time import timezone
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from berita.models import NewsModel
 from berita.models import CommentModel
 from landing.models import Profile
@@ -11,6 +11,7 @@ from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from landing.models import Profile
 from django.contrib.auth import authenticate
+from berita.forms import CommentForm
 
 # Create your views here.
 
@@ -26,9 +27,12 @@ def show_landing_news(request):
 def show_news(request, id):
     berita = NewsModel.objects.filter(pk=id)
     comments = CommentModel.objects.filter(news__pk=id)
+    if request.user.is_authenticated:
+        profile = get_object_or_404(Profile, user=request.user)
     context = {
         'news': berita, 
         'comments': comments, 
+        'user':profile,
     }
     return render(request, 'news_page.html', context)
 
@@ -72,3 +76,12 @@ def add_comment(request, id):
 
 def show_url(request):
     return request.path_info
+
+def show_roles(request):
+    profile = ""
+    if request.user.is_authenticated:
+        profile = get_object_or_404(user=request.user)
+    context={
+        'user':profile, 
+    }
+    return render(request, "news_page.html", context)
