@@ -34,6 +34,7 @@ a:active {
 .header-profile {
   background-color: rgba(170, 139, 86, 0.15);
   padding: 20px;
+  padding-top: 100px;
 }
 
 .header-modal {
