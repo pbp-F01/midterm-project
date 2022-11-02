@@ -1,0 +1,53 @@
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+  transition: 0.5s;
+  border-radius: 20px;
+  margin: 50px;
+  border: 2px solid #ccc;
+  background-color: rgba(78, 108, 80, 0.59);
+}
+
+.card-image-stars {
+  padding: 50px;
+}
+
+.card-body {
+  padding: 90px;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.header-review {
+  background-color: rgba(170, 139, 86, 0.15);
+  padding: 20px;
+  padding-top: 100px;
+}
+
+.button-rate {
+  background-color: rgba(170, 139, 86, 0.15);
+}
+
+.custom-circle-image {
+  width: 11vw; /* note i used vw not px for better responsive */
+  height: 11vw;
+}
+
+.custom-profile-detail-image {
+  width: 20vw; /* note i used vw not px for better responsive */
+  height: 20vw;
+}
+
+.custom-circle-image img {
+  object-fit: cover;
+}
+
+.card-title {
+  letter-spacing: 1.1px;
+}
+
+#rate {
+  padding: 20px;
+  padding-top: 100px;
+}

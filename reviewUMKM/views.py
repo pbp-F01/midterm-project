@@ -1,50 +1,55 @@
 from django.shortcuts import render, redirect
-from requests import request
 from profileUMKM.models import ProfileUMKM
-from . models import Review
-from . forms import ReviewForm
+from .models import Review
+from .forms import ReviewForm
 from django.http import HttpResponse
 from django.core import serializers
+from landing.models import Profile
 
 
 def home(request):
-    items = ProfileUMKM.objects.all()
-    print(items)
-    context = {
-        'items': items
-    }
-    return render(request, "/reviewUMKM/home.html", context)
+    user = ""
+    if request.user.is_authenticated:
+        user = Profile.objects.get(user=request.user)
+    return render(
+        request,
+        "reviewUMKM/home.html",
+        context={
+            "user": user,
+            "is_authenticated": request.user.is_authenticated,
+        },
+    )
 
 
 def rate(request, id):
-    post = ProfileUMKM.objects.get(id=id)
     form = ReviewForm(request.POST or None)
     if form.is_valid():
-        author = request.POST.get('author')
-        stars = request.POST.get('stars')
-        comment = request.POST.get('comment')
-        review = Review(author=author, stars=stars,
-                        comment=comment, umkm=post)
+        post = ProfileUMKM.objects.get(id=id)
+        author = Profile.objects.get(user=request.user)
+        rating = request.POST.get("rating")
+        comment = request.POST.get("comment")
+        review = Review(author=author, rating=rating, comment=comment, umkm=post)
         review.save()
-        return redirect('reviewUMKM:success')
+        return redirect("reviewUMKM:success")
 
     form = ReviewForm()
-    context = {
-        "form": form
-
-    }
-    return render(request, 'rate.html', context)
+    context = {"form": form}
+    return render(request, "reviewUMKM/rate.html", context)
 
 
 def success(request):
-    return render(request, "success.html")
+    return render(request, "reviewUMKM/success.html")
 
 
 def show_json_by_id(request, id):
     ratingbyid = Review.objects.get(pk=id)
-    return HttpResponse(serializers.serialize('json', [ratingbyid]), content_type='application/json')
+    return HttpResponse(
+        serializers.serialize("json", [ratingbyid]), content_type="application/json"
+    )
 
 
 def show_rating_json(request):
     rating = Review.objects.all()
-    return HttpResponse(serializers.serialize('json', rating), content_type='application/json')
+    return HttpResponse(
+        serializers.serialize("json", rating), content_type="application/json"
+    )

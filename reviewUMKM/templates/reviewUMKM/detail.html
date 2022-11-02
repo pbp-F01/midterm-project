@@ -1,0 +1,47 @@
+{% extends "base.html" %} {% load static %} {% block meta %}
+<title>Detail Review UMKM</title>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href=" {% static 'reviewUMKM/style.css' %} "
+/>
+{% endblock meta %} {% block content %}
+
+<div class="header-review d-flex justify-content-between">
+  <h1>Review<br />UMKM</h1>
+</div>
+
+<script>
+  const getProfileUMKM = async () => {
+    const response = await fetch("{% url 'profile-UMKM:get_profile_UMKM' %}");
+    return await response.json();
+  };
+
+  const addReviewUMKM = ({
+    pk,
+    fields: { rating, comment, review_date, author },
+  }) => {
+    const id = pk;
+
+    let photoTag = "";
+
+    const reviewUMKM =
+      `
+      <div class="card flex-row flex-wrap">
+        <div class="card-header border-0">
+            ` +
+      photoTag +
+      `
+        </div>
+        <div class="card-block mx-6">
+            <h4 class="card-title">${nama}</h4>
+            <p class="card-text">${pemilik}</p>
+        </div>
+    </div>
+    `;
+
+    document.getElementById("profil-umkm").innerHTML += profileUMKM;
+  };
+</script>
+
+{% endblock content %}

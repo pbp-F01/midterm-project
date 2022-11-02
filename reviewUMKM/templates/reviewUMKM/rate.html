@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% load static %} {% block meta %}
+<title>Review UMKM</title>
+<link
+  rel="stylesheet"
+  type="text/css"
+  href=" {% static 'reviewUMKM/style.css' %} "
+/>
+{% endblock meta %} 
+{% block content %}
+<div>
+  <form method="POST" id="rate">
+    {% csrf_token %} {{ form.as_p }}
+    <button class="btn btn-primary" type="submit">Rate Now</button>
+  </form>
+</div>
+{% endblock content %}
