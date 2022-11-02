@@ -8,7 +8,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
-    roles = models.CharField(max_length=10)
+    roles = models.CharField(max_length=100)
 
     def konsumen(self):
         if self.roles == 'K':
