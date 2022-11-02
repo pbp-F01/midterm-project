@@ -16,6 +16,7 @@ from django.contrib.auth import authenticate
 
 # @login_required(login_url='/landing/login/')
 def show_landing_news(request):
+    
     news = NewsModel.objects.all()
     context = {
         'berita': news, 
