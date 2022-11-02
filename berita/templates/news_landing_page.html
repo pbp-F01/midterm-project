@@ -152,7 +152,7 @@
                     var news_title = document.getElementById("third-headline"); 
                     var news_body = document.getElementById("newsbody3"); 
                     var news_image = document.getElementById("headline3-bg"); 
-                    var id_berita = data[i].pk
+                    var id_berita = data[k].pk
                     news_title.setAttribute("href", "news_page/".concat(id_berita));
                     
                     news_image.style.backgroundImage = "url(" + data[k].fields.news_image + ")";    
