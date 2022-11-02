@@ -8,7 +8,7 @@ class SignUp(UserCreationForm):
     email = forms.EmailField(max_length=100)
     ROLES_CHOICES = [('K', 'Konsumen'),
                      ('I', 'Investor'),
-                     ('P', 'Pemilik'), ]
+                     ('P', 'Pemilik')]
     roles = forms.ChoiceField(
         label="Roles",
         required=True,

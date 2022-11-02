@@ -207,12 +207,13 @@
         var item = datanya[0].fields;
         nameHtml += item.name;
         emailHtml += item.email;
-        if(item.roles="P"){
-          roleHtml += "Pemilik";}
-        else if(item.roles="I"){
-          roleHtml += "Investor";}
-        else{
-          roleHtml += "Konsumen";}
+        if(item.roles == "K"){
+          roleHtml += "Konsumen";
+        }else if(item.roles == "P"){
+          roleHtml += "Pemilik";
+        } else{
+            roleHtml += "Investor";
+          }
         document.getElementById('name').innerHTML = nameHtml;
         document.getElementById('email').innerHTML = emailHtml;
         document.getElementById('role').innerHTML = roleHtml;
