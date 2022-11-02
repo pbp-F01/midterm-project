@@ -135,7 +135,7 @@
                     console.log(news_image); 
 
                     news_title.innerHTML = data[j].fields.news_title; 
-                    news_title.setAttribute("href", "news_page/".concat(20+j));
+                    
 
                     news_body.innerHTML = data[j].fields.news_body; 
                      
@@ -182,17 +182,16 @@
                     let href = "news_page/"
 
                     
-                    
                     for (var i = 3; i < data.length -5; i++) {
                     var id_berita = data[i].pk
-                    href.concat(id_berita)
+                    
                     htmlstring += 
                     
                     `
                         <div class="card h-100 rounded-0 " id="news-card">
                             <img class="card-img-top rounded-0" src="${data[i].fields.news_image}" alt="news image">
                             <div class="card-body" >
-                                <a class="card-title" id="newsCardTitle" href=${href.concat(i+1)}>${data[i].fields.news_title}</a>
+                                <a class="card-title" id="newsCardTitle" href=${href.concat(id_berita)}>${data[i].fields.news_title}</a>
                                 <p class="card-text" id="card-news-body">${data[i].fields.news_body}</p>
                             </div>
                         </div>
@@ -220,7 +219,7 @@
 
                 for (var i = data.length - 5; i < data.length; i++) {
                     var id_berita = data[i].pk
-                    href.concat(id_berita)
+                    
                     htmlstring += 
                     
                     `
@@ -228,7 +227,7 @@
                         <div class='container2' id="side-news">
                             
                             <div style='margin-left:0px;'>
-                                <a  href=${href.concat(i+1)}>${data[i].fields.news_title}</a>
+                                <a  href=${href.concat(id_berita)}>${data[i].fields.news_title}</a>
                                 <div style="font-size:.6em">'${data[i].fields.news_published}</div>
                             </div>
                         </div>
