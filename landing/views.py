@@ -2,7 +2,7 @@ from cgitb import reset
 import datetime
 from .models import Profile
 from .forms import SignUp
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
@@ -56,6 +56,15 @@ def login_user(request):
             messages.info(request, 'Username atau Password salah!')
     context = {}
     return render(request, 'login.html', context)
+
+
+def show_roles(request, id):
+    if request.user.is_authenticated:
+        profile = get_object_or_404(Profile, user=request.user)
+    context = {
+        'user': profile,
+    }
+    return render(request, 'base.html', context)
 
 
 @login_required(login_url='/landing/login/')
