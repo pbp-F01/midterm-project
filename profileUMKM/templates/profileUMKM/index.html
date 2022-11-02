@@ -4,7 +4,7 @@
 
 {% block meta %}
 <title>Profile UMKM</title>
-<link rel="stylesheet" type="text/css" href=" {% static 'css/style.css' %} " />
+<link rel="stylesheet" type="text/css" href=" {% static 'profileUMKM/style.css' %} " />
 {% endblock meta %} 
 
 {% block content %}
@@ -36,7 +36,7 @@
     </button>
   </div>
   {% endif %} 
-  {% include 'modal.html' %}
+  {% include 'profileUMKM/modal.html' %}
 </div>
 
 <main id="profil-umkm" class="row m-6"></main>
@@ -53,22 +53,6 @@
     "id_kodepos",
     "id_foto",
   ];
-
-  const getCookie = (cname) => {
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(";");
-    for (let i = 0; i < ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == " ") {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-  };
 
   const getProfileUMKM = async () => {
     const response = await fetch(
@@ -281,5 +265,7 @@
 
   refreshProfileUMKM();
 </script>
+
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 
 {% endblock content %}
