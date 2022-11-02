@@ -69,4 +69,4 @@ def show_json(request):
 def profile(request):
     user = request.user
     data = Profile.objects.filter(user=user)
-    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+    return render(request, 'profile.html', {'data': data})

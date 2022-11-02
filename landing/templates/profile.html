@@ -155,8 +155,7 @@
             <div class="row m-l-0 m-r-0">
               <div class="col-sm-4 bg-c-lite-green user-profile">
                 <div class="card-block text-center text-white">
-                  <h1 class="f-w-600">Hembo Tingor</h6>
-                  <p>Web Designer</p>
+                  <h1 class="f-w-600">Profile</h6>
                   <i
                     class="mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"
                   ></i>
@@ -167,71 +166,22 @@
                   <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
                   <div class="row">
                     <div class="col-sm-6">
-                      <p class="m-b-10 f-w-600">Email</p>
-                      <h6 class="text-muted f-w-400">rntng@gmail.com</h6>
+                      <p class="m-b-10 f-w-600">Name</p>
+                      <h6 class="text-muted f-w-400"><div id="name"></div></h6>
                     </div>
                     <div class="col-sm-6">
-                      <p class="m-b-10 f-w-600">Phone</p>
-                      <h6 class="text-muted f-w-400">98979989898</h6>
+                      <p class="m-b-10 f-w-600">Email</p>
+                      <h6 class="text-muted f-w-400"><div id="email"></div></h6>
                     </div>
                   </div>
                   <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">
-                    Projects
+                    Role
                   </h6>
                   <div class="row">
                     <div class="col-sm-6">
-                      <p class="m-b-10 f-w-600">Recent</p>
-                      <h6 class="text-muted f-w-400">Sam Disuja</h6>
-                    </div>
-                    <div class="col-sm-6">
-                      <p class="m-b-10 f-w-600">Most Viewed</p>
-                      <h6 class="text-muted f-w-400">Dinoter husainm</h6>
+                      <p class="m-b-10 f-w-600"><div id="role" class="m-b-10 f-w-600"></div></p>
                     </div>
                   </div>
-                  <ul class="social-link list-unstyled m-t-40 m-b-10">
-                    <li>
-                      <a
-                        href="#!"
-                        data-toggle="tooltip"
-                        data-placement="bottom"
-                        title=""
-                        data-original-title="facebook"
-                        data-abc="true"
-                        ><i
-                          class="mdi mdi-facebook feather icon-facebook facebook"
-                          aria-hidden="true"
-                        ></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#!"
-                        data-toggle="tooltip"
-                        data-placement="bottom"
-                        title=""
-                        data-original-title="twitter"
-                        data-abc="true"
-                        ><i
-                          class="mdi mdi-twitter feather icon-twitter twitter"
-                          aria-hidden="true"
-                        ></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a
-                        href="#!"
-                        data-toggle="tooltip"
-                        data-placement="bottom"
-                        title=""
-                        data-original-title="instagram"
-                        data-abc="true"
-                        ><i
-                          class="mdi mdi-instagram feather icon-instagram instagram"
-                          aria-hidden="true"
-                        ></i
-                      ></a>
-                    </li>
-                  </ul>
                 </div>
               </div>
             </div>
@@ -243,43 +193,27 @@
 </main>
 
 <script>
-  // $(document).ready(function () {
-  //   $.ajax({
-  //     url: "{% url 'show_json' %}",
-  //     type: "GET",
-  //     dataType: "json",
-  //     success: function (data) {
-  //       console.log(data);
-  //       $("#name").html(data.name);
-  //       $("#email").html(data.email);
-  //       $("#phone").html(data.phone);
-  //       $("#recent").html(data.recent);
-  //       $("#most_viewed").html(data.most_viewed);
-  //     },
-  //   });
-  // });
-  function refresh() {
+  $(function() { 
+    // whatever code is here will be executed when the page loads
     $.ajax({
       type: "GET",
       url: "/landing/json",
       dataType: "json",
       success: function (data) {
-        datanya = data;
+        var datanya = data;
+        var nameHtml = "";
+        var emailHtml = "";
+        var roleHml = "";
+        var item = datanya[0].fields;
+        nameHtml += item.name;
+        emailHtml += item.email;
+        roleHml += item.roles;
+        document.getElementById('name').innerHTML = nameHtml;
+        document.getElementById('email').innerHTML = emailHtml;
+        document.getElementById('role').innerHTML = roleHml;
       },
     });
-    console.log(typeof datanya);
-    return datanya;
-  }
-  // function refresh2() {
-  //       var datanya = refresh();
-  //       var itemHtml = "<table> <tr> <th>Nama Barang</th> <th>Harga Barang</th> <th>Deskripsi</th> </tr>";
-  //       for (var i=0; i <datanya.length; i++){
-  //           var item = datanya[i].fields;
-  //           itemHtml += '<tr> <th>'+item.nama_barang+'</th> <th>'+item.harga_barang+'</th> <th>'+item.deskripsi+'</th> </tr>';
-  //       }
-  //       itemHtml +=  "</table>";
-  //       document.getElementById('lala').innerHTML = itemHtml;
-  //   }
+});
 </script>
 
-% endblock content %
+{% endblock content %}

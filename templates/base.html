@@ -85,7 +85,7 @@
           <li class="nav-item">
             <a class="nav-link text-white" href="#">Review UMKM</a>
           </li>
-          {% if request.user.username != "" %}
+          {% if request.user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link text-white" href="/landing/logout"><b>Logout</b></a>
           </li>
