@@ -1,3 +1,5 @@
+
+
 {% extends 'base.html' %}
 
 
@@ -29,11 +31,12 @@
             $.get("json_comment/"+news_id, function(data){
                 $.get("{% url 'berita:show_profile' %}", function(data_profile){
                     document.getElementById("comments").innerHTML = ""
+                    // console.log(data.length);
                     let htmlstring = ``
                     for (var i = 0; i < data.length; i++) {
 
                         
-                        // console.log(data);
+                        console.log(data);
                         // console.log(data_profile);
                         
                         htmlstring += 
@@ -52,8 +55,8 @@
 
     
         $(document).on('submit', '#addComment', function(e){
-            if(sessionStorage.getItem('status') != null) {
-                addComment();
+            // if(sessionStorage.getItem('status') != null) {
+            addComment();
             addComment();
             e.preventDefault(); 
             $.ajax({
@@ -69,10 +72,10 @@
             })
             addComment();
             addComment();
-            } else {
-                alert("You must have an account first");
+            // } else {
+            //     alert("You must have an account first");
                 
-            }
+            // }
             
             
         })
@@ -96,19 +99,15 @@
                     <li class="nav-item" style="text-align: center;">
                         <a class="nav-link" href="#" style="color: white; opacity: 79%">Review UMKM</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="#" style="color: white; opacity: 79%">Profil UMKM</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="#" style="color: white; opacity: 79%">Review UMKM</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="#" style="color: white; opacity: 79%">Penjualan UMKM</a>
                     </li>
-
                     <button type="button" style="border-radius: 50%; height: 40px; width: 40px;" class="btn btn-light" id="profile-btn"></button>
             </ul>
         
@@ -120,7 +119,7 @@
         {% for berita in news %}
             <h1 style="text-align: center;">{{berita.news_title}}</h1>
             <img src={{berita.news_image}} alt="Jakpreneur" style="margin-bottom: 25px; margin-top: 25px; display: block;
-            margin-left: auto; margin-right: auto;">
+            margin-left: auto; margin-right: auto; max-height: 400px;">
            <p id="news_body" style="text-align: justify; word-break: break-words; font-size: large;">{{berita.news_body}}</p>
         {% endfor %}
      
@@ -200,3 +199,4 @@
 
 
 {% endblock content %}
+
