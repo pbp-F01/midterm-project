@@ -1,0 +1,11 @@
+{% extends "base.html"%}
+{% block content %}
+<style>
+    body{
+        background-color: crimson;
+    }
+</style>
+    <h1 style="margin-top: 20%;">Thanks for the review and rating this UMKM!</h1>
+    <a class="btn btn-danger" style="color: white;" href="{% url 'reviewUMKM:home' %}">close</a>
+    
+{% endblock content %}

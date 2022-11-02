@@ -22,4 +22,5 @@ urlpatterns = [
     path('landing/', include('landing.urls')),
     path('berita/', include('berita.urls')),
     path('profile-umkm/', include('profileUMKM.urls')),
+    path('reviewUMKM/', include('reviewUMKM.urls')),
 ]
