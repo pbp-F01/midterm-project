@@ -85,9 +85,9 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link text-white" href="#">Review UMKM</a>
+              <a class="nav-link text-white" href="/reviewUMKM/">Review UMKM</a>
             </li>
-            {% if request.user.is_authenticated and request.user.roles == "K"%}
+            {% if request.user.is_authenticated and user.roles == "K"%}
             <li class="nav-item">
               <a class="nav-link text-white" href="/landing/profile">User</a>
             </li>
