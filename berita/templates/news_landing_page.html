@@ -106,12 +106,14 @@
                     var news_title = document.getElementById("first-headline"); 
                     var news_body = document.getElementById("newsbody1"); 
                     var news_image = document.getElementById("headline1-bg"); 
+                    var id_berita = data[i].pk
                     
                     news_image.style.backgroundImage = "url(" + data[i].fields.news_image + ")";    
                     // console.log(news_image); 
 
                     news_title.innerHTML = data[i].fields.news_title; 
-                    news_title.setAttribute("href", "news_page/1");
+                    
+                    news_title.setAttribute("href", "news_page/".concat(id_berita));
 
                     news_body.innerHTML = data[i].fields.news_body; 
                      
@@ -126,12 +128,14 @@
                     var news_title = document.getElementById("second-headline"); 
                     var news_body = document.getElementById("newsbody2"); 
                     var news_image = document.getElementById("headline2-bg"); 
+                    var id_berita = data[i].pk
+                    news_title.setAttribute("href", "news_page/".concat(id_berita));
 
                     news_image.style.backgroundImage = "url(" + data[j].fields.news_image + ")";    
                     console.log(news_image); 
 
                     news_title.innerHTML = data[j].fields.news_title; 
-                    news_title.setAttribute("href", "news_page/2");
+                    news_title.setAttribute("href", "news_page/".concat(20+j));
 
                     news_body.innerHTML = data[j].fields.news_body; 
                      
@@ -144,16 +148,18 @@
 
                 }
 
-                for (var k = 2; k <= 2; k++) {
+                for (var k = 2; k < 3; k++) {
                     var news_title = document.getElementById("third-headline"); 
                     var news_body = document.getElementById("newsbody3"); 
                     var news_image = document.getElementById("headline3-bg"); 
+                    var id_berita = data[i].pk
+                    news_title.setAttribute("href", "news_page/".concat(id_berita));
                     
                     news_image.style.backgroundImage = "url(" + data[k].fields.news_image + ")";    
                     console.log(news_image); 
 
                     news_title.innerHTML = data[k].fields.news_title; 
-                    news_title.setAttribute("href", "news_page/3");
+                    
 
                     news_body.innerHTML = data[k].fields.news_body; 
                      
@@ -175,8 +181,11 @@
                     let htmlstring = ``
                     let href = "news_page/"
 
+                    
+                    
                     for (var i = 3; i < data.length -5; i++) {
-                    href.concat(i+1)
+                    var id_berita = data[i].pk
+                    href.concat(id_berita)
                     htmlstring += 
                     
                     `
@@ -210,7 +219,8 @@
                 let href = "news_page/"
 
                 for (var i = data.length - 5; i < data.length; i++) {
-                    href.concat(i+1)
+                    var id_berita = data[i].pk
+                    href.concat(id_berita)
                     htmlstring += 
                     
                     `
