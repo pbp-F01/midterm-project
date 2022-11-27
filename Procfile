@@ -1,3 +1,1 @@
-# release: python manage.py migrate
-release: sh -c 'python manage.py migrate && python manage.py loaddata news_data.json'
-web: gunicorn project_django.wsgi --log-file -
+web: python manage.py migrate; python manage.py seeds; sleep 2; python manage.py loaddata news_data.json; gunicorn project_django.wsgi
