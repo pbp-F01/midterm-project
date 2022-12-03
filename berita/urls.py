@@ -1,5 +1,5 @@
 from django.urls import path
-from berita.views import show_landing_news, show_news, show_json, show_json_comment, add_comment, show_url, show_profile
+from berita.views import show_landing_news, show_news, show_json, show_json_comment, add_comment, show_url, show_profile, show_all_comments
 
 app_name='berita'
 
@@ -11,4 +11,5 @@ urlpatterns = [
     path('news_page/add_comment/<int:id>', add_comment, name='add_comment'), 
     path('show_url', show_url, name='show_url'), 
     path('show_profile', show_profile, name='show_profile'), 
+    path('show_comment', show_all_comments, name='show_all_comments'),
 ]
