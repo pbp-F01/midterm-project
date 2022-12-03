@@ -48,6 +48,10 @@ def show_profile(request):
     data_profile = Profile.objects.all()
     return HttpResponse(serializers.serialize("json", data_profile), content_type="application/json")
 
+def show_all_comments(request):
+    data = CommentModel.objects.all()
+    return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
 @login_required(login_url='/landing/login/')
 def add_comment(request, id):
     print(id)
