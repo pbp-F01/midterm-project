@@ -6,7 +6,7 @@ from landing.forms import SignUp
 
 
 @csrf_exempt
-def login(request):
+def login_user(request):
     username = request.POST["username"]
     password = request.POST["password"]
     user = authenticate(username=username, password=password)
