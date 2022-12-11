@@ -76,3 +76,34 @@ def get_profile_UMKM_json(request, pk):
         serializers.serialize("json", data, use_natural_foreign_keys=True),
         content_type="application/json",
     )
+
+
+def create_profile_UMKM_flutter(request):
+    user = get_object_or_404(Profile, user=request.user)
+
+    if request.method == "POST" and user.roles == "P":
+        body = json.loads(request.body.decode("utf-8"))
+        form = ProfileUMKMForm(body)
+
+        if form.is_valid():
+            form.cleaned_data["pemilik"] = user
+            data = form.cleaned_data
+            profileUMKM = ProfileUMKM.objects.create(**data)
+
+            data["pemilik"] = user.name
+            content = {
+                "fields": data,
+                "pk": profileUMKM.pk,
+            }
+            return JsonResponse(content, status=201)
+
+        return JsonResponse({"status": False, "message": "Input tidak valid!"})
+
+
+def delete_profile_UMKM_flutter(request, pk):
+    user = get_object_or_404(Profile, user=request.user)
+
+    if request.method == "DELETE" and user.roles == "P":
+        profile_UMKM = get_object_or_404(ProfileUMKM, id=pk)
+        profile_UMKM.delete()
+        return JsonResponse({"status": True, "message": "Profil UMKM berhasil dihapus"})
