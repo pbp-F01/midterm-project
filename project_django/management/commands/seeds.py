@@ -23,9 +23,10 @@ class Command(BaseCommand):
 
 def clear_data():
     """Deletes all the table data"""
-    print("Delete Tasks instances")
+    print("Delete All instances")
     User.objects.all().delete()
     ProfileUMKM.objects.all().delete()
+    Profile.objects.all().delete()
 
 
 def run_seed(self, mode):
