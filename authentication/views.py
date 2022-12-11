@@ -46,7 +46,7 @@ def login_user(request):
 
 
 @csrf_exempt
-def register(request):
+def register_user(request):
     if request.method == 'POST':
 
         data = json.loads(request.body)
