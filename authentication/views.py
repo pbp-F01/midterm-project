@@ -9,40 +9,41 @@ import json
 
 @csrf_exempt
 def login_user(request):
-    username = request.POST["username"]
-    password = request.POST["password"]
-    user = authenticate(username=username, password=password)
-    if user is not None:
-        if user.is_active:
-            auth_login(request, user)
-            profile = Profile.objects.filter(user=user)
-            # Redirect to a success page.
-            return JsonResponse(
-                {
-                    "status": True,
-                    "message": "Successfully Logged In!",
-                    "user_data": {
-                        "username": user.username,
-                        "id": user.id,
-                        "role": profile.roles,
+    if (request.method == "POST"):
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                auth_login(request, user)
+                profile = Profile.objects.filter(user=user)
+                # Redirect to a success page.
+                return JsonResponse(
+                    {
+                        "status": True,
+                        "message": "Successfully Logged In!",
+                        "user_data": {
+                            "username": user.username,
+                            "id": user.id,
+                            "role": profile.roles,
+                        },
                     },
-                },
-                status=200,
-            )
+                    status=200,
+                )
+            else:
+                return JsonResponse(
+                    {"status": False, "message": "Failed to Login, Account Disabled."},
+                    status=401,
+                )
+
         else:
             return JsonResponse(
-                {"status": False, "message": "Failed to Login, Account Disabled."},
+                {
+                    "status": False,
+                    "message": "Failed to Login, check your username/password.",
+                },
                 status=401,
             )
-
-    else:
-        return JsonResponse(
-            {
-                "status": False,
-                "message": "Failed to Login, check your username/password.",
-            },
-            status=401,
-        )
 
 
 @csrf_exempt
