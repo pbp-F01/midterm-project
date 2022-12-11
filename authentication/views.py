@@ -3,6 +3,8 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from landing.models import Profile
 from landing.forms import SignUp
+from django.contrib.auth.backends import UserModel
+import json
 
 
 @csrf_exempt
@@ -44,28 +46,40 @@ def login_user(request):
 
 
 @csrf_exempt
-def register_user(request):
-    if request.method == "POST":
-        form = SignUp(request.POST)
-        if form.is_valid():
-            user = form.save()
-            Profile.objects.create(
-                user=user,
-                name=user.name,
-                email=user.email,
-                roles=user.roles,
-            )
-            return JsonResponse(
-                {"status": True, "message": "Successfully create account!"},
-                status=200,
-            )
-        return JsonResponse(
-            {
-                "status": False,
-                "message": form.errors,
-            },
-            status=400,
+def register(request):
+    if request.method == 'POST':
+
+        data = json.loads(request.body)
+
+        name = data["name"]
+        email = data["email"]
+        password1 = data["password1"]
+        password2 = data["password2"]
+        roles = data["roles"]
+        username = data["username"]
+
+        if UserModel.objects.filter(username=username).exists():
+            return JsonResponse({"status": "duplicate"}, status=401)
+
+        if password1 != password2:
+            return JsonResponse({"status": "pass failed"}, status=401)
+
+        createUser = UserModel.objects.create_user(
+            username=username,
+            password=password1,
         )
+        createUser.save()
+        newUser = Profile.objects.create(
+            user=createUser,
+            email=email,
+            roles=roles,
+            name=name
+        )
+
+        newUser.save()
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
 
 
 @csrf_exempt
