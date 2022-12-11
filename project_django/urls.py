@@ -23,5 +23,5 @@ urlpatterns = [
     path("berita/", include("berita.urls")),
     path("profile-umkm/", include("profileUMKM.urls")),
     path("reviewUMKM/", include("reviewUMKM.urls")),
-    path("auth/", include("auth.urls")),
+    path("authentication/", include("authentication.urls")),
 ]

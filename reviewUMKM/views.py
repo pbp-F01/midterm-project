@@ -5,6 +5,7 @@ from .forms import ReviewForm
 from django.http import HttpResponse
 from django.core import serializers
 from landing.models import Profile
+from django.views.decorators.csrf import csrf_exempt
 
 
 def home(request):
@@ -35,6 +36,17 @@ def rate(request, id):
     form = ReviewForm()
     context = {"form": form}
     return render(request, "reviewUMKM/rate.html", context)
+
+
+@csrf_exempt
+def rate_flutter(request, id):
+    post = ProfileUMKM.objects.get(id=id)
+    author = Profile.objects.get(user=request.user)
+    rating = request.POST.get("rating")
+    comment = request.POST.get("comment")
+    review = Review(author=author, rating=rating, comment=comment, umkm=post)
+    review.save()
+    return HttpResponse(b"Create", status=200)
 
 
 def success(request):
