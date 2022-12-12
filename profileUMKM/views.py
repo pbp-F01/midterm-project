@@ -9,6 +9,7 @@ from profileUMKM.models import ProfileUMKM
 from profileUMKM.forms import ProfileUMKMForm
 from django.views.decorators.csrf import csrf_exempt
 
+
 def list_profile_UMKM(request):
     form = ProfileUMKMForm()
     user = ""
@@ -81,7 +82,7 @@ def get_profile_UMKM_json(request, pk):
 @csrf_exempt
 def create_profile_UMKM_flutter(request):
     user = get_object_or_404(Profile, user=request.user)
-    
+
     if request.method == "POST" and user.roles == "P":
         body = json.loads(request.body.decode("utf-8"))
         form = ProfileUMKMForm(body)
@@ -91,7 +92,9 @@ def create_profile_UMKM_flutter(request):
             data = form.cleaned_data
             ProfileUMKM.objects.create(**data)
 
-            return JsonResponse({"status": True, "message": "Berhasil menambahkan Profil UMKM!"})
+            return JsonResponse(
+                {"status": True, "message": "Berhasil menambahkan Profil UMKM!"}
+            )
 
         return JsonResponse({"status": False, "message": form.errors})
 
@@ -102,9 +105,10 @@ def delete_profile_UMKM_flutter(request, pk):
 
     if request.method == "POST" and user.roles == "P":
         try:
-            profile_UMKM=ProfileUMKM.objects.get(pk=pk)
+            profile_UMKM = ProfileUMKM.objects.get(id=pk)
             profile_UMKM.delete()
-            return JsonResponse({"status": True, "message": "Profil UMKM berhasil dihapus!"})
+            return JsonResponse(
+                {"status": True, "message": "Profil UMKM berhasil dihapus!"}
+            )
         except ProfileUMKM.DoesNotExist:
             return JsonResponse({"status": False, "message": "id tidak ditemukan!"})
-        
