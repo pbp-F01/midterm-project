@@ -86,18 +86,18 @@ def show_url(request):
 def addComment_flutter(request):
     try:
         comments_substance: request.POST.get('comments_substance')
-        news_index: request.POST.get('index_berita')
+        # news_index: request.POST.get('index_berita')
         new_comment = CommentModel(
             comments_substance = comments_substance, 
-            user = Profile.objects.get(user=request.user),
-            news = NewsModel.objects.get(pk=news_index), 
+            user = Profile.objects.get(request.user),
+            news = NewsModel.objects.get(pk=1), 
             date_added = datetime.datetime.now(), 
         )
         new_comment.save()
         response_data = {
             'comments_substance' : request.POST.get('comments_substance'), 
             'user' : Profile.objects.get(user=request.user),
-            'news' : NewsModel.objects.get(pk=news_index), 
+            'news' : NewsModel.objects.get(pk=1), 
             'date_added' : datetime.datetime.now(), 
         }
         return JsonResponse(response_data)
