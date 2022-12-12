@@ -109,7 +109,7 @@ def create_profile_UMKM_flutter(request):
 def delete_profile_UMKM_flutter(request, pk):
     user = get_object_or_404(Profile, user=request.user)
 
-    if request.method == "DELETE" and user.roles == "P":
+    if request.method == "POST" and user.roles == "P":
         profile_UMKM = get_object_or_404(ProfileUMKM, id=pk)
         profile_UMKM.delete()
         return JsonResponse({"status": True, "message": "Profil UMKM berhasil dihapus"})
