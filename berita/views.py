@@ -89,9 +89,9 @@ def addComment_flutter(request):
         comments_substance = request.POST.get('comments_substance')
         profile = Profile.objects.get(user=request.user)
         try:
-            news = NewsModel.objects.get(pk=request.POST.get('news_index'))
+            news = NewsModel.objects.get(pk=int(request.POST.get('news_index')))
         except NewsModel.DoesNotExist:
-            raise Http404("No Model matches")
+            return JsonResponse({"message" : "No News"})
         
         new_comment = CommentModel(
             comments_substance=comments_substance, 
