@@ -13,6 +13,7 @@ from landing.models import Profile
 from django.contrib.auth import authenticate
 from berita.forms import CommentForm
 from django.http.response import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
@@ -81,6 +82,7 @@ def add_comment(request, id):
 def show_url(request):
     return request.path_info
 
+@csrf_exempt
 def addComment_flutter(request):
     try:
         comments_substance: request.POST.get('comments_substance')
