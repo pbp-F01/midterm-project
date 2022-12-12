@@ -12,6 +12,7 @@ from django.contrib.auth.decorators import login_required
 from landing.models import Profile
 from django.contrib.auth import authenticate
 from berita.forms import CommentForm
+from django.http.response import JsonResponse
 
 # Create your views here.
 
@@ -79,5 +80,26 @@ def add_comment(request, id):
 
 def show_url(request):
     return request.path_info
+
+def addComment_flutter(request):
+    try:
+        comments_substance: request.POST.get('comments_substance')
+        new_comment = CommentModel(
+            comments_substance = comments_substance, 
+            user = Profile.objects.get(user=request.user),
+            news = NewsModel.objects.get(news=request.news), 
+            date_added = datetime.datetime.now(), 
+        )
+        new_comment.save()
+        response_data = {
+            'comments_substance' : request.POST.get('comments_substance'), 
+            'user' : Profile.objects.get(user=request.user),
+            'news' : NewsModel.objects.get(news=request.news), 
+            'date_added' : datetime.datetime.now(), 
+        }
+        return JsonResponse(response_data)
+    except:
+        return JsonResponse({"message" : "Failed!"})
+
 
 

@@ -1,5 +1,5 @@
 from django.urls import path
-from berita.views import show_landing_news, show_news, show_json, show_json_comment, add_comment, show_url, show_profile, show_all_comments
+from berita.views import show_landing_news, show_news, show_json, show_json_comment, add_comment, show_url, show_profile, show_all_comments, addComment_flutter
 
 app_name='berita'
 
@@ -12,4 +12,5 @@ urlpatterns = [
     path('show_url', show_url, name='show_url'), 
     path('show_profile', show_profile, name='show_profile'), 
     path('show_comment', show_all_comments, name='show_all_comments'),
+    path('addComment_flutter', addComment_flutter, name='addComment_flutter'),
 ]
