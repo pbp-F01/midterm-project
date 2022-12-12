@@ -85,7 +85,7 @@ def show_url(request):
 
 @csrf_exempt
 def addComment_flutter(request):
-    news_index = int (request.POST.get('index_berita'))
+    news_index = request.POST.get('index_berita')
     data = json.loads(request.body)
     try: 
         comments_substance = request.POST.get('comments_substance')
