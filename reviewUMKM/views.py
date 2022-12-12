@@ -46,7 +46,9 @@ def rate_flutter(request,idUser):
     comment = request.POST.get("comment")
     review = Review(author=author, rating=rating, comment=comment, umkm=post)
     review.save()
-    return HttpResponse(b"Create", status=200)
+    return JsonResponse({
+            "status": True,
+            }, status=200)
 
 
 def success(request):
