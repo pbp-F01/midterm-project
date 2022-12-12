@@ -25,7 +25,7 @@ def login_user(request):
                         "user_data": {
                             "username": user.username,
                             "id": user.id,
-                            "role": profile.roles,
+                            "role": str(profile.values()[0]['roles']),
                         },
                     },
                     status=200,
