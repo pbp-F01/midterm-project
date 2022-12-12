@@ -14,6 +14,7 @@ from django.contrib.auth import authenticate
 from berita.forms import CommentForm
 from django.http.response import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+import json
 
 # Create your views here.
 
@@ -84,26 +85,29 @@ def show_url(request):
 
 @csrf_exempt
 def addComment_flutter(request):
-    print(request.POST.get('comments_substance'))
-    try:
-        comments_substance: request.POST.get('comments_substance')
-        # news_index: request.POST.get('index_berita')
-        # new_comment = CommentModel(
-        #     comments_substance = comments_substance, 
-        #     user = Profile.objects.get(request.user),
-        #     news = NewsModel.objects.get(pk=1), 
-        #     date_added = datetime.datetime.now(), 
-        # )
-        #new_comment.save()
-        response_data = {
-            comments_substance, 
-            # 'user' : Profile.objects.get(user=request.user),
-            # 'news' : NewsModel.objects.get(pk=1), 
-            # 'date_added' : datetime.datetime.now(), 
-        }
-        return JsonResponse(response_data)
-    except:
-        return JsonResponse({"message" : "Failed!"})
+    if request.method == "POST":
+        status = None
+        data = json.loads(request.body)
+        user = Profile.objects.get(user=request.user)
+        comments_substance = data['comments_substance']
+        news = NewsModel.objects.get(pk=data['index_berita'])
+        date_added = datetime.datetime.now(), 
 
+        new_comment = CommentModel.objects.create(
+            comments_substance=comments_substance, 
+            user = user, 
+            news = news, 
+            date_added = date_added, 
+        )  
+
+    try:
+        new_comment.save()
+        content = {
+            "fieldsComments" : new_comment,
+            "pk" : new_comment.pk, 
+        }
+        return JsonResponse(content)
+    except: 
+        return JsonResponse({"Message" : "Error"})
 
 
