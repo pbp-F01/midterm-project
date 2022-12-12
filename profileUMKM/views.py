@@ -80,26 +80,17 @@ def get_profile_UMKM_json(request, pk):
 
 @csrf_exempt
 def create_profile_UMKM_flutter(request):
-    print(request.user)
     user = get_object_or_404(Profile, user=request.user)
-    print("USER ", user)
+    
     if request.method == "POST" and user.roles == "P":
         body = json.loads(request.body.decode("utf-8"))
-        print(body)
         form = ProfileUMKMForm(body)
-
-        print(" FORM " , form)
 
         if form.is_valid():
             form.cleaned_data["pemilik"] = user
             data = form.cleaned_data
-            profileUMKM = ProfileUMKM.objects.create(**data)
+            ProfileUMKM.objects.create(**data)
 
-            data["pemilik"] = user.name
-            content = {
-                "fields": data,
-                "pk": profileUMKM.pk,
-            }
             return JsonResponse({"status": True, "message": "Berhasil menambahkan Profil UMKM!"})
 
         return JsonResponse({"status": False, "message": form.errors})
@@ -110,6 +101,10 @@ def delete_profile_UMKM_flutter(request, pk):
     user = get_object_or_404(Profile, user=request.user)
 
     if request.method == "POST" and user.roles == "P":
-        profile_UMKM = get_object_or_404(ProfileUMKM, id=pk)
-        profile_UMKM.delete()
-        return JsonResponse({"status": True, "message": "Profil UMKM berhasil dihapus"})
+        try:
+            profile_UMKM=ProfileUMKM.objects.get(id=pk)
+            profile_UMKM.delete()
+            return JsonResponse({"status": True, "message": "Profil UMKM berhasil dihapus!"})
+        except ProfileUMKM.DoesNotExist:
+            return JsonResponse({"status": False, "message": "id tidak ditemukan!"})
+        
