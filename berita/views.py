@@ -85,28 +85,29 @@ def show_url(request):
 
 @csrf_exempt
 def addComment_flutter(request):
-    news_index = request.POST.get('index_berita')
+    
     try: 
+        news_index = request.POST.get('index_berita')
         comments_substance = request.POST.get('comments_substance')
-        # profile = Profile.objects.get(user=request.user)
-        # try:
-        #     news = NewsModel.objects.get(pk=news_index)
-        # except NewsModel.DoesNotExist:
-        #     raise Http404("No Model matches")
+        profile = Profile.objects.get(user=request.user)
+        try:
+            news = NewsModel.objects.get(pk=news_index)
+        except NewsModel.DoesNotExist:
+            raise Http404("No Model matches")
         
-        # new_comment = CommentModel.objects.create(
-        #     comments_substance=comments_substance, 
-        #     user = profile, 
-        #     news = news, 
-        #     date_added = datetime.datetime.now(), 
-        # )
+        new_comment = CommentModel(
+            comments_substance=comments_substance, 
+            user = profile, 
+            news = news, 
+            date_added = datetime.datetime.now(), 
+        )
 
-        # new_comment.save()
+        new_comment.save()
 
         response_data = {
-            'comments_substance': request.POST.get('comments_substance'), 
-            'user' : Profile.objects.get(user=request.user),
-            'news' : NewsModel.objects.get(pk=news_index), 
+            'comments_substance': comments_substance, 
+            'user' : profile,
+            'news' : news, 
             'date_added' : datetime.datetime.now(), 
         }
         return JsonResponse(response_data)
