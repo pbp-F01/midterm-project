@@ -39,16 +39,19 @@ def rate(request, id):
 
 
 @csrf_exempt
-def rate_flutter(request):
-    post = ProfileUMKM.objects.get(id=request.POST.get("idUmkm"))
-    author = Profile.objects.get(user=3)
+def rate_flutter(request,idUmkm):
+    post = ProfileUMKM.objects.get(id=idUmkm)
+    author = Profile.objects.get(user=request.user)
     rating = request.POST.get("rating")
     comment = request.POST.get("comment")
     review = Review(author=author, rating=rating, comment=comment, umkm=post)
     review.save()
     return JsonResponse({
-            "status": True,
-            }, status=200)
+            'status': True,
+            'message': 'Review Berhasil ditambahkan!',
+      
+        }, status=200)
+
 
 
 def success(request):
