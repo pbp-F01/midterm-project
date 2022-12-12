@@ -100,9 +100,9 @@ def create_profile_UMKM_flutter(request):
                 "fields": data,
                 "pk": profileUMKM.pk,
             }
-            return JsonResponse(content, status=201)
+            return JsonResponse({"status": True, "message": "Berhasil menambahkan Profil UMKM!"})
 
-        return JsonResponse({"status": False, "message": "Input tidak valid!"})
+        return JsonResponse({"status": False, "message": form.errors})
 
 
 @csrf_exempt
