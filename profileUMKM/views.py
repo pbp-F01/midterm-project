@@ -102,7 +102,7 @@ def delete_profile_UMKM_flutter(request, pk):
 
     if request.method == "POST" and user.roles == "P":
         try:
-            profile_UMKM=ProfileUMKM.objects.get(id=pk)
+            profile_UMKM=ProfileUMKM.objects.get(pk=pk)
             profile_UMKM.delete()
             return JsonResponse({"status": True, "message": "Profil UMKM berhasil dihapus!"})
         except ProfileUMKM.DoesNotExist:
