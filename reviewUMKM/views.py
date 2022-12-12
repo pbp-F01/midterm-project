@@ -41,7 +41,7 @@ def rate(request, id):
 @csrf_exempt
 def rate_flutter(request):
     post = ProfileUMKM.objects.get(id=request.POST.get("idUmkm"))
-    author = Profile.objects.get(user=request.user)
+    author = Profile.objects.get(user=3)
     rating = request.POST.get("rating")
     comment = request.POST.get("comment")
     review = Review(author=author, rating=rating, comment=comment, umkm=post)
