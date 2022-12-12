@@ -111,7 +111,7 @@ def addComment_flutter(request):
         }
         return JsonResponse(response_data)
     except:
-        return JsonResponse({"message" : "Failed!"})
+        return JsonResponse({"message" : request.POST.get('comments_substance')})
 
 
 
