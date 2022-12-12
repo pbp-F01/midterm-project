@@ -7,7 +7,7 @@ from django.core import serializers
 from landing.models import Profile
 from profileUMKM.models import ProfileUMKM
 from profileUMKM.forms import ProfileUMKMForm
-
+from django.views.decorators.csrf import csrf_exempt
 
 def list_profile_UMKM(request):
     form = ProfileUMKMForm()
@@ -78,6 +78,7 @@ def get_profile_UMKM_json(request, pk):
     )
 
 
+@csrf_exempt
 def create_profile_UMKM_flutter(request):
     user = get_object_or_404(Profile, user=request.user)
 
@@ -100,6 +101,7 @@ def create_profile_UMKM_flutter(request):
         return JsonResponse({"status": False, "message": "Input tidak valid!"})
 
 
+@csrf_exempt
 def delete_profile_UMKM_flutter(request, pk):
     user = get_object_or_404(Profile, user=request.user)
 
