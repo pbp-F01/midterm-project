@@ -80,11 +80,15 @@ def get_profile_UMKM_json(request, pk):
 
 @csrf_exempt
 def create_profile_UMKM_flutter(request):
+    print(request.user)
     user = get_object_or_404(Profile, user=request.user)
-
+    print("USER ", user)
     if request.method == "POST" and user.roles == "P":
         body = json.loads(request.body.decode("utf-8"))
+        print(body)
         form = ProfileUMKMForm(body)
+
+        print(" FORM " , form)
 
         if form.is_valid():
             form.cleaned_data["pemilik"] = user
