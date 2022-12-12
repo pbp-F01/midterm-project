@@ -95,7 +95,7 @@ def addComment_flutter(request):
         # )
         #new_comment.save()
         response_data = {
-            'comments_substance' : request.POST.get('comments_substance'), 
+            request.POST.get('comments_substance'), 
             # 'user' : Profile.objects.get(user=request.user),
             # 'news' : NewsModel.objects.get(pk=1), 
             # 'date_added' : datetime.datetime.now(), 
