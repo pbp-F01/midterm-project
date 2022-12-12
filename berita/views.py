@@ -86,9 +86,10 @@ def show_url(request):
 @csrf_exempt
 def addComment_flutter(request):
     try: 
-        comments_substance = request.POST.get('comments_substance')
-        profile = Profile.objects.get(user=request.user)
+        comments_substance = request.POST.get("comments_substance")
+        
         try:
+            profile = Profile.objects.get(user=request.user)
             news = NewsModel.objects.get(pk=int(request.POST.get('news_index')))
         except NewsModel.DoesNotExist:
             return JsonResponse({"message" : "No News"})
