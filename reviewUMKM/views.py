@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from profileUMKM.models import ProfileUMKM
 from .models import Review
 from .forms import ReviewForm
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from django.core import serializers
 from landing.models import Profile
 from django.views.decorators.csrf import csrf_exempt
