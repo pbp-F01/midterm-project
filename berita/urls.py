@@ -12,5 +12,5 @@ urlpatterns = [
     path('show_url', show_url, name='show_url'), 
     path('show_profile', show_profile, name='show_profile'), 
     path('show_comment', show_all_comments, name='show_all_comments'),
-    path('addComment_flutter', addComment_flutter, name='addComment_flutter'),
+    path('addComment_flutter/<int:id>', addComment_flutter, name='addComment_flutter'),
 ]

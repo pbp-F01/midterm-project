@@ -84,14 +84,13 @@ def show_url(request):
     return request.path_info
 
 @csrf_exempt
-def addComment_flutter(request):
+def addComment_flutter(request, id_news):
     
     try: 
-        news_index = request.POST.get('index_berita')
         comments_substance = request.POST.get('comments_substance')
         profile = Profile.objects.get(user=request.user)
         try:
-            news = NewsModel.objects.get(pk=news_index)
+            news = NewsModel.objects.get(pk=id_news)
         except NewsModel.DoesNotExist:
             raise Http404("No Model matches")
         
