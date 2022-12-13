@@ -61,8 +61,8 @@ def create_task():
     print("Creating tasks")
     USER_DATA = [
         {
-            "username": "Haji Ade",
-            "password": "hjade3231",
+            "username": "dummyuser1",
+            "password": "dummypassword1",
         },
         {
             "username": "dummyuser2",
@@ -78,7 +78,7 @@ def create_task():
         user = User.objects.create_user(**USER_DATA[i])
         Profile.objects.create(
             user=user,
-            name=random_string(),
+            name="Haji Ade",
             email=random_string() + "@gmail.com",
             roles="P",
         )
