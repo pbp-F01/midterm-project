@@ -1,0 +1,54 @@
+[
+  {
+    "model": "profileUMKM.profileumkm", "pk": 1, "fields": {
+      "nama": "Pak Haji Ade",
+      "pemilik": 1,
+      "no_telepon": "08991587123",
+      "email": "hjAde@gmail.com",
+      "kontak": "Sarah",
+      "kota": "Depok",
+      "provinsi": "Jawa Barat",
+      "kodepos": 16414,
+      "foto": "https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1630219755/qi2qfpdn1vivt6txizxs.jpg"
+    }
+  }, 
+  {
+    "model": "profileUMKM.profileumkm", "pk": 2, "fields": {
+      "nama": "Pak Haji Ade ",
+      "pemilik": 1,
+      "no_telepon": "08955187123",
+      "email": "hjAde@gmail.com",
+      "kontak": "Siti",
+      "kota": "Depok",
+      "provinsi": "Jawa Barat",
+      "kodepos": 16444,
+      "foto": "https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1630219755/qi2qfpdn1vivt6txizxs.jpg"
+    }
+  }, 
+  {
+    "model": "profileUMKM.profileumkm", "pk": 3, "fields": {
+      "nama": "Pak Haji Ade",
+      "pemilik": 1,
+      "no_telepon": "089915412123",
+      "email": "hjAde@gmail.com",
+      "kontak": "Tono",
+      "kota": "Depok",
+      "provinsi": "Jawa Barat",
+      "kodepos": 16412,
+      "foto": "https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1630219755/qi2qfpdn1vivt6txizxs.jpg"
+    }
+  },  
+  {
+    "model": "profileUMKM.profileumkm", "pk": 4, "fields": {
+      "nama": "Pak Haji Ade",
+      "pemilik": 1,
+      "no_telepon": "089711587123",
+      "email": "hjAde@gmail.com",
+      "kontak": "Rois",
+      "kota": "Depok",
+      "provinsi": "Jawa Barat",
+      "kodepos": 16414,
+      "foto": "https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1630219755/qi2qfpdn1vivt6txizxs.jpg"
+    }
+  }
+]
