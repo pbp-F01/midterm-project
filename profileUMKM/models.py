@@ -26,4 +26,4 @@ class ProfileUMKM(models.Model):
         default="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
     )
 
-    tanggal_pembuatan = models.DateTimeField("Tanggal Pembuatan", auto_now_add=True)
+    tanggal_pembuatan = models.DateField("Tanggal Pembuatan", auto_now_add=True)
