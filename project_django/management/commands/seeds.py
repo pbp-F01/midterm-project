@@ -83,19 +83,19 @@ def create_task():
             roles="P",
         )
 
-    profile_user = Profile.objects.first()
+    # profile_user = Profile.objects.first()
 
-    for _ in range(10):
-        ProfileUMKM.objects.create(
-            nama=random_string(10),
-            pemilik=profile_user,
-            no_telepon=random_string(10),
-            email=random_string(10) + "@gmail.com",
-            kontak=random_string(10),
-            kota=random_string(10),
-            provinsi=random_string(10),
-            kodepos=random.randint(1, 90000),
-            foto="https://cdn2.thecatapi.com/images/MjA0NzcwNA.jpg",
-        )
+    # for _ in range(10):
+    #     ProfileUMKM.objects.create(
+    #         nama=random_string(10),
+    #         pemilik=profile_user,
+    #         no_telepon=random_string(10),
+    #         email=random_string(10) + "@gmail.com",
+    #         kontak=random_string(10),
+    #         kota=random_string(10),
+    #         provinsi=random_string(10),
+    #         kodepos=random.randint(1, 90000),
+    #         foto="https://cdn2.thecatapi.com/images/MjA0NzcwNA.jpg",
+    #     )
 
     print(f"tasks created.")
