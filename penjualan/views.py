@@ -54,7 +54,7 @@ def add_laporan_flutter(request):
             PenjualanForm.objects.create(**data)
 
             return JsonResponse(
-                {"status": True, "message": "Berhasil menambahkan Profil UMKM!"}
+                {"status": True, "message": "Berhasil menambahkan Laporan Penjualan!"}
             )
 
         return JsonResponse({"status": False, "message": form.errors})
